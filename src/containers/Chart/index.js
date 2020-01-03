@@ -43,9 +43,7 @@ class Chart extends Component {
         data.push(0)
       }
 
-      Object.keys(intake).map(hour => {
-        data[hour] = intake[hour]
-      })
+      Object.keys(intake).map(hour => data[hour] = intake[hour])
 
       return {
         label: 'caffeine',
