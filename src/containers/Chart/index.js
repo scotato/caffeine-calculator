@@ -11,7 +11,7 @@ class Chart extends Component {
       hour < 12 ? ++hour : ++hour - 12
     )
 
-    const getTimeline = (start = 12, duration = 24) => {
+    const getTimeline = (start = 7, duration = 24) => {
       let timeline = [ start ]
 
       while (timeline.length < duration) {
@@ -54,8 +54,8 @@ class Chart extends Component {
     }
 
     const intakeCaffeine = {
-      10: 200,
-      11: 100
+      4: 200,
+      5: 100
     }
 
     const labels = getTimeline()
