@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2'
-// var LineChart = require('react-chartjs').Line;
-import './index.css'
 
 class Chart extends Component {
   constructor (props) {
@@ -72,9 +70,7 @@ class Chart extends Component {
 
   render () {
     return (
-      <div className='Chart'>
-        <Line {...this.state} />
-      </div>
+      <Line {...this.state} />
     )
   }
 }
