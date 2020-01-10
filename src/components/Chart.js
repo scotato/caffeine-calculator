@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import { Line } from 'react-chartjs-2'
 
+const STARTHOUR = 6
+const DURATIONHOURS = 24
+
 const getNextHour = hour => (
   hour < 12 ? ++hour : ++hour - 12
 )
 
-const getTimeline = (start = 7, duration = 24) => {
-  let timeline = [ start ]
+const getHourLabels = () => {
+  let timeline = [ STARTHOUR ]
 
-  while (timeline.length < duration) {
+  while (timeline.length < DURATIONHOURS) {
     let current = timeline[ timeline.length - 1 ]
     let next = getNextHour(current)
     timeline.push(next)
@@ -28,21 +31,6 @@ const getHalflifeData = data => {
     total = val ? halflife + val : halflife
     return total
   })
-}
-
-const getCaffeineData = (intake = {}, duration = 24) => {
-  let data = []
-
-  while (data.length < duration) {
-    data.push(0)
-  }
-
-  Object.keys(intake).map(hour => data[hour] = intake[hour])
-
-  return {
-    label: 'caffeine',
-    data: getHalflifeData(data)
-  }
 }
 
 // https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/caffeine/art-20049372
@@ -140,9 +128,6 @@ const Chart = () => {
   const [quantity, setQuantity] = useState(defaultDrink.oz)
   const [hour, setHour] = useState(8)
   const [isAdding, setIsAdding] = useState(false)
-  const [labels, setLabels] = useState(getTimeline())
-  const [intake, setIntake] = useState({4: 200, 5: 100})
-  const [datasets, setDatasets] = useState([getCaffeineData(intake)])
 
   const setDefaults = () => {
     setDrink(defaultDrink)
@@ -157,7 +142,21 @@ const Chart = () => {
   }
 
   const removeDrink = doseToRemove => {
-    setDrinks(drinks.filter(dose => doseToRemove.id != dose.id))
+    setDrinks(drinks.filter(dose => doseToRemove.id !== dose.id))
+  }
+
+  const getDatasets = () => {
+    // tally caffeine by hour
+    let data = drinks.reduce((acc, cur) => {
+      const index = cur.hour - STARTHOUR
+      acc[index] += (cur.drink.caffeine / cur.drink.oz * cur.quantity)
+      return acc
+    }, Array.from({length: DURATIONHOURS}, () => 0))
+    
+    return [{
+      label: 'caffeine',
+      data: getHalflifeData(data)
+    }]
   }
 
   return (
@@ -165,8 +164,8 @@ const Chart = () => {
       <Line
         options={options}
         data={{
-          labels,
-          datasets
+          labels: getHourLabels(),
+          datasets: getDatasets()
         }}
       />
       {isAdding ? (
@@ -203,7 +202,7 @@ const Chart = () => {
             name="hour"
             value={hour}
             min={1}
-            max={24}
+            max={DURATIONHOURS}
             step={1}
             onChange={e => setHour(e.target.value)}
           />
