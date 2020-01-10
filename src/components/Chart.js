@@ -73,7 +73,7 @@ const getCaffeineData = (intake = {}, duration = 24) => {
 // add dose
 // remove dose
 
-const drinks = [
+const drinkTypes = [
   {
     title: "Coffee",
     caffeine: 130,
@@ -84,7 +84,7 @@ const drinks = [
   },
   {
     title: "Espresso",
-    caffeine: 56,
+    caffeine: 60,
     oz: 1,
     min: 1,
     max: 4,
@@ -92,7 +92,7 @@ const drinks = [
   },
   {
     title: "Latte",
-    caffeine: 95,
+    caffeine: 100,
     oz: 8,
     min: 8,
     max: 20,
@@ -100,7 +100,7 @@ const drinks = [
   },
   {
     title: "Black Tea",
-    caffeine: 37,
+    caffeine: 40,
     oz: 8,
     min: 8,
     max: 20,
@@ -108,7 +108,7 @@ const drinks = [
   },
   {
     title: "Green Tea",
-    caffeine: 27,
+    caffeine: 30,
     oz: 8,
     min: 8,
     max: 20,
@@ -132,19 +132,33 @@ const drinks = [
   },
 ]
 
-const getEntry = ({ category, size, caffeine, time }) => ({
-  category, size, caffeine, time
-})
-
 const Chart = () => {
-  const [drink, setDrink] = useState(drinks[0])
-  const [oz, setOz] = useState(drink.oz)
+  const options = {}
+  const defaultDrink = drinkTypes[0]
+  const [drink, setDrink] = useState(defaultDrink)
+  const [drinks, setDrinks] = useState([])
+  const [quantity, setQuantity] = useState(defaultDrink.oz)
   const [hour, setHour] = useState(8)
   const [isAdding, setIsAdding] = useState(false)
   const [labels, setLabels] = useState(getTimeline())
   const [intake, setIntake] = useState({4: 200, 5: 100})
   const [datasets, setDatasets] = useState([getCaffeineData(intake)])
-  const options = {}
+
+  const setDefaults = () => {
+    setDrink(defaultDrink)
+    setQuantity(defaultDrink.oz)
+    setHour(8)
+    setIsAdding(false)
+  }
+
+  const addDrink = () => {
+    setDrinks([...drinks, { drink, quantity, hour, id: new Date().getTime() }])
+    setDefaults()
+  }
+
+  const removeDrink = doseToRemove => {
+    setDrinks(drinks.filter(dose => doseToRemove.id != dose.id))
+  }
 
   return (
     <>
@@ -160,12 +174,12 @@ const Chart = () => {
           <select
             value={drink.title}
             onChange={e => {
-              const drinkNew = drinks.find(drink => drink.title === e.target.value)
+              const drinkNew = drinkTypes.find(drink => drink.title === e.target.value)
               setDrink(drinkNew)
-              setOz(drinkNew.oz)
+              setQuantity(drinkNew.oz)
             }}
           >
-            {drinks.map(d =>
+            {drinkTypes.map(d =>
               <option key={d.title} value={d.title}>
                 {d.title}
               </option>
@@ -174,15 +188,19 @@ const Chart = () => {
 
           <input
             type="range"
-            value={oz}
+            name="quantity"
+            value={quantity}
             min={drink.min}
             max={drink.max}
             step={drink.step}
-            onChange={e => setOz(e.target.value)}
+            onChange={e => setQuantity(e.target.value)}
           />
 
+          <label for="quantity" style={{fontFamily: 'monospace'}}>{quantity}oz</label>
+          
           <input
             type="range"
+            name="hour"
             value={hour}
             min={1}
             max={24}
@@ -190,11 +208,22 @@ const Chart = () => {
             onChange={e => setHour(e.target.value)}
           />
 
-          <button onClick={() => setIsAdding(false)}>Add</button>
-          <button onClick={() => setIsAdding(false)}>Cancel</button>
+          <label for="hour" style={{fontFamily: 'monospace'}}>{hour}hr</label>
+          <strong style={{fontFamily: 'monospace'}}>{drink.caffeine / drink.oz * quantity}mg caffeine</strong>
+
+          <button onClick={addDrink}>Add</button>
+          <button onClick={setDefaults}>Cancel</button>
         </div>
       ) : (
-        <button onClick={() => setIsAdding(true)}>Add Dose</button>
+        <>
+          {drinks.map(dose => (
+            <>
+              <span>{dose.drink.title} {dose.quantity}oz at {dose.hour}h</span>
+              <button onClick={() => removeDrink(dose)}>x</button>
+            </>
+          ))}
+          <button onClick={() => setIsAdding(true)}>Add Drink</button>
+        </>
       )}
     </>
   )
