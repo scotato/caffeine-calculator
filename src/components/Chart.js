@@ -99,8 +99,8 @@ const Chart = () => {
             <label for="hour" style={{fontFamily: 'monospace'}}>{hour}hr</label>
             <strong style={{fontFamily: 'monospace'}}>{drink.caffeine / drink.oz * quantity}mg caffeine</strong>
 
-            <Button onClick={addDrink} type='success'>Add</Button>
             <Button onClick={setDefaults} type='warning'>Cancel</Button>
+            <Button onClick={addDrink} type='success'>Add</Button>
           </>
         ) : (
           <>
