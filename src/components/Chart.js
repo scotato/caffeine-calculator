@@ -1,128 +1,12 @@
 import React, { useState } from 'react'
 import { Line } from 'react-chartjs-2'
-
-const STARTHOUR = 6
-const DURATIONHOURS = 24
-
-const getNextHour = hour => (
-  hour < 12 ? ++hour : ++hour - 12
-)
-
-const getHourLabels = () => {
-  let timeline = [ STARTHOUR ]
-
-  while (timeline.length < DURATIONHOURS) {
-    let current = timeline[ timeline.length - 1 ]
-    let next = getNextHour(current)
-    timeline.push(next)
-  }
-
-  return timeline
-}
-
-const getHalflife = (total, time, halflife = 5.7) => (
-  total * Math.pow(0.5, (time / halflife))
-)
-
-const getHalflifeData = data => {
-  let total = 0
-  return data.map((val, i) => {
-    const halflife = getHalflife(total, 1) // 1 hour increment
-    total = val ? halflife + val : halflife
-    return total
-  })
-}
-
-// https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/caffeine/art-20049372
-
-// Coffee drinks	Size in oz. (mL)	Caffeine (mg)
-// Brewed	8 (237)	95-165 = 130
-// Espresso	1 (30)	47-64 = 56
-// Instant	8 (237)	63
-// Latte or mocha	8 (237)	63-126 = 95
-
-// Teas	Size in oz. (mL)	Caffeine (mg)
-// Brewed black	8 (237)	25-48 = 37
-// Brewed green	8 (237)	25-29 = 27
-// bottled	8 (237)	5-40 = 23
-
-// Sodas	Size in oz. (mL)	Caffeine (mg)
-// Cola	8 (237)	24-46 = 35
-
-// Energy drinks	Size in oz. (mL)	Caffeine (mg)
-// Energy drink	8 (237)	27-164 = 100
-// Energy shot	1 (30)	40-100 = 70
-
-// https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/caffeine/art-20045678
-// Up to 400 milligrams (mg) of caffeine a day appears to be safe for most healthy adults. That's roughly the amount of caffeine in four cups of brewed coffee, 10 cans of cola or two "energy shot" drinks. Keep in mind that the actual caffeine content in beverages varies widely, especially among energy drinks.
-
-// TODO: add interface for user to add a drink
-// struct { category: enum, size: oz, caffeine: mg, time: 24h }
-// add dose
-// remove dose
-
-const drinkTypes = [
-  {
-    title: "Coffee",
-    caffeine: 130,
-    oz: 8,
-    min: 8,
-    max: 32,
-    step: 4
-  },
-  {
-    title: "Espresso",
-    caffeine: 60,
-    oz: 1,
-    min: 1,
-    max: 4,
-    step: 1
-  },
-  {
-    title: "Latte",
-    caffeine: 100,
-    oz: 8,
-    min: 8,
-    max: 20,
-    step: 4
-  },
-  {
-    title: "Black Tea",
-    caffeine: 40,
-    oz: 8,
-    min: 8,
-    max: 20,
-    step: 4
-  },
-  {
-    title: "Green Tea",
-    caffeine: 30,
-    oz: 8,
-    min: 8,
-    max: 20,
-    step: 4
-  },
-  {
-    title: "Energy Drink",
-    caffeine: 100,
-    oz: 8,
-    min: 8,
-    max: 32,
-    step: 4
-  },
-  {
-    title: "Energy Shot",
-    caffeine: 70,
-    oz: 1,
-    min: 1,
-    max: 4,
-    step: 1
-  },
-]
+import { DURATIONHOURS } from '../constants'
+import { getDatasets, getHourLabels } from '../helpers'
+import { beverages } from '../data'
 
 const Chart = () => {
   const options = {}
-  const defaultDrink = drinkTypes[0]
+  const defaultDrink = beverages[0]
   const [drink, setDrink] = useState(defaultDrink)
   const [drinks, setDrinks] = useState([])
   const [quantity, setQuantity] = useState(defaultDrink.oz)
@@ -145,27 +29,13 @@ const Chart = () => {
     setDrinks(drinks.filter(dose => doseToRemove.id !== dose.id))
   }
 
-  const getDatasets = () => {
-    // tally caffeine by hour
-    let data = drinks.reduce((acc, cur) => {
-      const index = cur.hour - STARTHOUR
-      acc[index] += (cur.drink.caffeine / cur.drink.oz * cur.quantity)
-      return acc
-    }, Array.from({length: DURATIONHOURS}, () => 0))
-    
-    return [{
-      label: 'caffeine',
-      data: getHalflifeData(data)
-    }]
-  }
-
   return (
     <>
       <Line
         options={options}
         data={{
           labels: getHourLabels(),
-          datasets: getDatasets()
+          datasets: getDatasets(drinks)
         }}
       />
       {isAdding ? (
@@ -173,12 +43,12 @@ const Chart = () => {
           <select
             value={drink.title}
             onChange={e => {
-              const drinkNew = drinkTypes.find(drink => drink.title === e.target.value)
+              const drinkNew = beverages.find(drink => drink.title === e.target.value)
               setDrink(drinkNew)
               setQuantity(drinkNew.oz)
             }}
           >
-            {drinkTypes.map(d =>
+            {beverages.map(d =>
               <option key={d.title} value={d.title}>
                 {d.title}
               </option>
