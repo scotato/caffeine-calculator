@@ -35,7 +35,7 @@ const Chart = () => {
         options={options}
         data={{
           labels: getHourLabels(),
-          datasets: getDatasets(drinks)
+          datasets: getDatasets(isAdding ? [...drinks, { drink, quantity, hour, id: new Date().getTime() }] : drinks)
         }}
       />
       {isAdding ? (
