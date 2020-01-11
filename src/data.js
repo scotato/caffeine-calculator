@@ -24,6 +24,7 @@
 export const beverages = [
   {
     title: "Coffee",
+    icon: "☕️",
     caffeine: 130,
     oz: 8,
     min: 8,
@@ -33,6 +34,7 @@ export const beverages = [
   {
     title: "Espresso",
     caffeine: 60,
+    icon: "☕️",
     oz: 1,
     min: 1,
     max: 4,
@@ -41,6 +43,7 @@ export const beverages = [
   {
     title: "Latte",
     caffeine: 100,
+    icon: "☕️",
     oz: 8,
     min: 8,
     max: 20,
@@ -48,6 +51,7 @@ export const beverages = [
   },
   {
     title: "Black Tea",
+    icon: "🍵",
     caffeine: 40,
     oz: 8,
     min: 8,
@@ -56,6 +60,7 @@ export const beverages = [
   },
   {
     title: "Green Tea",
+    icon: "🍵",
     caffeine: 30,
     oz: 8,
     min: 8,
@@ -64,6 +69,7 @@ export const beverages = [
   },
   {
     title: "Soda",
+    icon: "🥤",
     caffeine: 35,
     oz: 8,
     min: 8,
@@ -72,6 +78,7 @@ export const beverages = [
   },
   {
     title: "Energy Drink",
+    icon: "⚡️",
     caffeine: 100,
     oz: 8,
     min: 8,
@@ -80,6 +87,7 @@ export const beverages = [
   },
   {
     title: "Energy Shot",
+    icon: "⚡️",
     caffeine: 70,
     oz: 1,
     min: 1,
