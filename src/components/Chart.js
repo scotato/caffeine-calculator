@@ -3,6 +3,8 @@ import { Line } from 'react-chartjs-2'
 import { DURATIONHOURS } from '../constants'
 import { getDatasets, getHourLabels } from '../helpers'
 import { beverages } from '../data'
+import Button from './Button'
+import Range from './Range'
 
 const Chart = () => {
   const options = {}
@@ -55,8 +57,7 @@ const Chart = () => {
             )}
           </select>
 
-          <input
-            type="range"
+          <Range
             name="quantity"
             value={quantity}
             min={drink.min}
@@ -67,8 +68,7 @@ const Chart = () => {
 
           <label for="quantity" style={{fontFamily: 'monospace'}}>{quantity}oz</label>
           
-          <input
-            type="range"
+          <Range
             name="hour"
             value={hour}
             min={1}
@@ -80,18 +80,18 @@ const Chart = () => {
           <label for="hour" style={{fontFamily: 'monospace'}}>{hour}hr</label>
           <strong style={{fontFamily: 'monospace'}}>{drink.caffeine / drink.oz * quantity}mg caffeine</strong>
 
-          <button onClick={addDrink}>Add</button>
-          <button onClick={setDefaults}>Cancel</button>
+          <Button onClick={addDrink}>Add</Button>
+          <Button onClick={setDefaults}>Cancel</Button>
         </div>
       ) : (
         <>
           {drinks.map(dose => (
             <>
               <span>{dose.drink.title} {dose.quantity}oz at {dose.hour}h</span>
-              <button onClick={() => removeDrink(dose)}>x</button>
+              <Button onClick={() => removeDrink(dose)}>x</Button>
             </>
           ))}
-          <button onClick={() => setIsAdding(true)}>Add Drink</button>
+          <Button onClick={() => setIsAdding(true)}>Add Drink</Button>
         </>
       )}
     </>
