@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { STARTHOUR, DURATIONHOURS, CAFFEINEHALFLIFE } from './constants'
 
-export const getTimestamp = hour => moment().hour(hour).format('hA')
+export const getTimestamp = hour => moment().hour(hour).format('ha')
 
 const getHalflifeData = data => {
   let total = 0

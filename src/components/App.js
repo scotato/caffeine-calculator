@@ -7,11 +7,11 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 18px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    height: 100vh;
   }
 
   #root {
-    height: 100%;
+    display: grid;
+    min-height: 100vh;
   }
 
   h1, h2, h3, h4, h5, h6 {

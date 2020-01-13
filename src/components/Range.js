@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { colors } from '../theme'
 
 export default styled.input.attrs({type: 'range'})`
   margin-bottom: 32px;
@@ -8,19 +9,29 @@ export default styled.input.attrs({type: 'range'})`
 
   &::-webkit-slider-runnable-track {
     height: 5px;
-    background: #ddd;
+    background: ${colors.defaultLight};
     border: none;
     border-radius: 3px;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &::-webkit-slider-thumb {
-    -webkit-appearance: none;
+    margin-top: -5px;
     border: none;
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: #ccc;
-    margin-top: -5px;
+    background: ${colors.defaultLight};
+    will-change: background;
+    transition: background 0.3s ease-out;
+    -webkit-appearance: none;
+
+    @media (max-width: 768px) { 
+      margin-top: -9px;
+      height: 24px;
+      width: 24px;
+    }
   }
 
   &:focus {
@@ -28,14 +39,20 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &:focus::-webkit-slider-runnable-track {
-    background: #ccc;
+    background: ${colors.info};
+  }
+
+  &:focus::-webkit-slider-thumb {
+    background: ${colors.info};
   }
 
   &::-moz-range-track {
     height: 5px;
-    background: #ddd;
+    background: ${colors.defaultLight};
     border: none;
     border-radius: 3px;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &::-moz-range-thumb {
@@ -44,6 +61,8 @@ export default styled.input.attrs({type: 'range'})`
     width: 16px;
     border-radius: 50%;
     background: goldenrod;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   /*hide the outline behind the border*/
@@ -64,16 +83,22 @@ export default styled.input.attrs({type: 'range'})`
 
     /*remove default tick marks*/
     color: transparent;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &::-ms-fill-lower {
     background: #777;
     border-radius: 10px;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &::-ms-fill-upper {
-    background: #ddd;
+    background: ${colors.defaultLight};
     border-radius: 10px;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &::-ms-thumb {
@@ -82,13 +107,15 @@ export default styled.input.attrs({type: 'range'})`
     width: 16px;
     border-radius: 50%;
     background: goldenrod;
+    will-change: background;
+    transition: background 0.3s ease-out;
   }
 
   &:focus::-ms-fill-lower {
-    background: #888;
+    background: ${colors.info};
   }
 
   &:focus::-ms-fill-upper {
-    background: #ccc;
+    background: ${colors.info};
   }
 `

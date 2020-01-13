@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { DURATIONHOURS } from '../constants'
 import { getDatasets, getHourLabels, getTimestamp } from '../helpers'
@@ -12,15 +12,53 @@ import Select from './Select'
 import Range from './Range'
 import Button from './Button'
 
-const Controls = styled.div`
-  display: flex;  
-  flex-direction: column;
+const layoutLandscape = css`
+  grid-template-rows: initial;
+  grid-template-columns: 1fr 3fr;
+  grid-column-gap: 32px;
+  grid-template-areas: "sidebar main";
 `
 
-const Buttons = styled.div`
+const layoutPortrait = css`
+  grid-template-rows: auto auto;
+  grid-template-columns: initial;
+  grid-row-gap: 32px;
+  grid-template-areas: 
+    "sidebar"
+    "main";
+`
+
+const Layout = styled.div`
   display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 16px;
+  margin: 0 auto;
+  padding: 32px;
+  width: 100%;
+  max-width: 1680px;
+  box-sizing: border-box;
+
+  @media (orientation:landscape) {
+    ${layoutLandscape}
+  }
+
+  @media (orientation:portrait) {
+    ${layoutPortrait}
+  }
+
+  @media (max-width: 768px) { 
+    ${layoutPortrait}
+  }
+`
+
+const Main = styled.main`
+  grid-area: main;
+  max-width: calc(100vw - 64px);
+`
+
+const Sidebar = styled.div`
+  display: flex;  
+  flex-direction: column;
+  flex: 1;
+  grid-area: sidebar;
 `
 
 const Body = styled.div`
@@ -30,15 +68,10 @@ const Body = styled.div`
   flex-grow: 1;
 `
 
-const Layout = styled.div`
+const Buttons = styled.div`
   display: grid;
-  margin: 0 auto;
-  padding: 32px;
-  grid-template-columns: 1fr 3fr;
-  grid-column-gap: 32px;
-  max-width: 1680px;
-  height: 100%;
-  box-sizing: border-box;
+  grid-auto-flow: row;
+  grid-row-gap: 16px;
 `
 
 const Chart = () => {
@@ -67,7 +100,7 @@ const Chart = () => {
 
   return (
     <Layout>
-      <Controls>
+      <Sidebar>
         <h1>Caffeine Calculator</h1>
 
         {isAdding ? (
@@ -79,6 +112,8 @@ const Chart = () => {
               </Label>
 
               <Select
+                name="beverage"
+                autoFocus={true}
                 value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
                 onChange={option => {
                   const drinkNew = beverages.find(beverage => beverage.title === option.value)
@@ -88,7 +123,6 @@ const Chart = () => {
                 options={beverages.map(beverage => (
                   {value: beverage.title, label: `${beverage.icon} ${beverage.title}`}
                 ))}
-                name="beverage"
               />
 
               <Label for="quantity">
@@ -121,7 +155,7 @@ const Chart = () => {
             </Body>
             
             <Buttons>
-              <Button onClick={setDefaults} type='warning'>Cancel</Button>
+              <Button onClick={setDefaults} type='default'>Cancel</Button>
               <Button onClick={addDrink} type='success'>Add</Button>
             </Buttons>
           </>
@@ -147,9 +181,9 @@ const Chart = () => {
             </Buttons>
           </>
         )}
-      </Controls>
+      </Sidebar>
 
-      <div>
+      <Main>
         <Line
           data={{
             labels: getHourLabels(),
@@ -159,7 +193,7 @@ const Chart = () => {
             maintainAspectRatio: false,
             tooltips: {
               callbacks: {
-                  title: item => getTimestamp(item[0].xLabel),
+                  title: item => item[0].xLabel,
                   label: item => `${Math.round(item.yLabel)}mg`
               }
             },
@@ -173,7 +207,7 @@ const Chart = () => {
           }
           }}
         />
-      </div>
+      </Main>
     </Layout>
   )
 }
