@@ -6,6 +6,7 @@ import { getDatasets, getHourLabels, getTimestamp } from '../helpers'
 import { beverages } from '../data'
 
 import { Line } from 'react-chartjs-2'
+import Row from './Row'
 import Label from './Label'
 import Select from './Select'
 import Range from './Range'
@@ -24,17 +25,9 @@ const Buttons = styled.div`
 
 const Body = styled.div`
   display: flex;
-  padding: 16px 0;
+  padding: 32px 0;
   flex-direction: column;
   flex-grow: 1;
-`
-
-const Beverage = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  grid-column-gap: 16px;
-  align-items: center;
-  justify-self: flex-start;
 `
 
 const Layout = styled.div`
@@ -135,11 +128,14 @@ const Chart = () => {
         ) : (
           <>
             <Body>
-              {drinks.map(dose => (
-                <Beverage>
-                  <span>{dose.drink.title} {dose.quantity}oz at {dose.hour}h</span>
-                  <Button onClick={() => removeDrink(dose)} type='danger'>x</Button>
-                </Beverage>
+              {drinks.sort((a, b) => a.hour - b.hour).map(dose => (
+                <Row
+                  icon={dose.drink.icon}
+                  title={dose.drink.title}
+                  subtitle={`${dose.quantity}oz at ${getTimestamp(dose.hour)}`}
+                  detail={`+${dose.drink.caffeine / dose.drink.oz * dose.quantity}mg`}
+                  onDelete={() => removeDrink(dose)}
+                />
               ))}
             </Body>
 

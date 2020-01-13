@@ -1,14 +1,7 @@
 import styled from 'styled-components'
+import { colors } from '../theme'
 
-const buttonColors = {
-  default: 'gray',
-  info: '#007bff',
-  success: '#20c997',
-  warning: '#ffc107',
-  danger: '#dc3545',
-}
-
-const backgroundColor = ({ type = 'default'}) => buttonColors[type]
+const backgroundColor = ({ type = 'default'}) => colors[type]
 
 export default styled.button`
   padding: 16px 24px;
