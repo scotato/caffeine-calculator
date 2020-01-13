@@ -1,4 +1,7 @@
+import moment from 'moment'
 import { STARTHOUR, DURATIONHOURS, CAFFEINEHALFLIFE } from './constants'
+
+export const getTimestamp = hour => moment().hour(hour).format('hA')
 
 const getHalflifeData = data => {
   let total = 0
@@ -11,7 +14,7 @@ const getHalflifeData = data => {
 }
 
 const getNextHour = hour => (
-  hour < 12 ? ++hour : ++hour - 12
+  hour >= 23 ? hour++ -23 : ++hour
 )
 
 export const getHourLabels = () => {
@@ -23,7 +26,7 @@ export const getHourLabels = () => {
     timeline.push(next)
   }
 
-  return timeline
+  return timeline.map(getTimestamp)
 }
 
 export const getDatasets = drinks => {

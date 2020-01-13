@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+
 import { DURATIONHOURS } from '../constants'
-import { getDatasets, getHourLabels } from '../helpers'
+import { getDatasets, getHourLabels, getTimestamp } from '../helpers'
 import { beverages } from '../data'
 
 import { Line } from 'react-chartjs-2'
@@ -10,23 +11,19 @@ import Button from './Button'
 import Range from './Range'
 
 const Controls = styled.div`
-  display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 16px;
-  align-items: flex-start;
+  display: flex;  
+  flex-direction: column;
 `
 
 const Buttons = styled.div`
   display: grid;
-  margin-top: auto;
   grid-auto-flow: row;
   grid-row-gap: 16px;
 `
 
 const Inputs = styled.div`
-  display: grid;
-  grid-auto-flow: row;
-  grid-row-gap: 16px;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
 `
 
@@ -42,7 +39,7 @@ const Layout = styled.div`
   display: grid;
   margin: 0 auto;
   padding: 32px;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 3fr;
   grid-column-gap: 32px;
   max-width: 1680px;
   height: 100%;
@@ -75,17 +72,9 @@ const Chart = () => {
 
   return (
     <Layout>
-      <div>
-        <Line
-          data={{
-            labels: getHourLabels(),
-            datasets: getDatasets(isAdding ? [...drinks, { drink, quantity, hour, id: new Date().getTime() }] : drinks)
-          }}
-          options={{ maintainAspectRatio: false }}
-        />
-      </div>
-
       <Controls>
+        <h1>Caffeine Calculator</h1>
+
         {isAdding ? (
           <>
             <Inputs>
@@ -152,6 +141,31 @@ const Chart = () => {
           </>
         )}
       </Controls>
+
+      <div>
+        <Line
+          data={{
+            labels: getHourLabels(),
+            datasets: getDatasets(isAdding ? [...drinks, { drink, quantity, hour, id: new Date().getTime() }] : drinks)
+          }}
+          options={{
+            maintainAspectRatio: false,
+            tooltips: {
+              callbacks: {
+                  title: item => getTimestamp(item[0].xLabel),
+                  label: item => `${Math.round(item.yLabel)}mg`
+              }
+            },
+            scales: {
+              yAxes: [{
+                  ticks: {
+                      callback: val => `${val}mg`
+                  }
+              }]
+          }
+          }}
+        />
+      </div>
     </Layout>
   )
 }
