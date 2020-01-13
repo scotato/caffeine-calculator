@@ -29,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
   h3 {
     font-size: 24px;
   }
+
+  strong {
+    font-weight: 700;
+  }
 `
 
 export default () => (

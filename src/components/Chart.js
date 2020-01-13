@@ -6,9 +6,10 @@ import { getDatasets, getHourLabels, getTimestamp } from '../helpers'
 import { beverages } from '../data'
 
 import { Line } from 'react-chartjs-2'
+import Label from './Label'
 import Select from './Select'
-import Button from './Button'
 import Range from './Range'
+import Button from './Button'
 
 const Controls = styled.div`
   display: flex;  
@@ -21,8 +22,9 @@ const Buttons = styled.div`
   grid-row-gap: 16px;
 `
 
-const Inputs = styled.div`
+const Body = styled.div`
   display: flex;
+  padding: 16px 0;
   flex-direction: column;
   flex-grow: 1;
 `
@@ -77,8 +79,12 @@ const Chart = () => {
 
         {isAdding ? (
           <>
-            <Inputs>
-              <label for="beverage" style={{fontFamily: 'monospace'}}>Beverage</label>
+            <Body>
+              <Label for="beverage">
+                <span>Beverage</span>
+                <strong>{drink.caffeine / drink.oz * quantity}mg</strong>
+              </Label>
+
               <Select
                 value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
                 onChange={option => {
@@ -92,6 +98,11 @@ const Chart = () => {
                 name="beverage"
               />
 
+              <Label for="quantity">
+                <span>Quantity</span>
+                <strong>{quantity}oz</strong>
+              </Label>
+              
               <Range
                 name="quantity"
                 value={quantity}
@@ -101,20 +112,20 @@ const Chart = () => {
                 onChange={e => setQuantity(e.target.value)}
               />
 
-              <label for="quantity" style={{fontFamily: 'monospace'}}>{quantity}oz</label>
+              <Label for="time">
+                <span>Time</span>
+                <strong>{getTimestamp(hour)}</strong>
+              </Label>
               
               <Range
-                name="hour"
+                name="time"
                 value={hour}
                 min={1}
                 max={DURATIONHOURS}
                 step={1}
                 onChange={e => setHour(e.target.value)}
               />
-
-              <label for="hour" style={{fontFamily: 'monospace'}}>{getTimestamp(hour)}</label>
-              <strong style={{fontFamily: 'monospace'}}>{drink.caffeine / drink.oz * quantity}mg caffeine</strong>
-            </Inputs>
+            </Body>
             
             <Buttons>
               <Button onClick={setDefaults} type='warning'>Cancel</Button>
@@ -123,14 +134,14 @@ const Chart = () => {
           </>
         ) : (
           <>
-            <Inputs>
+            <Body>
               {drinks.map(dose => (
                 <Beverage>
                   <span>{dose.drink.title} {dose.quantity}oz at {dose.hour}h</span>
                   <Button onClick={() => removeDrink(dose)} type='danger'>x</Button>
                 </Beverage>
               ))}
-            </Inputs>
+            </Body>
 
             <Buttons>
               <Button

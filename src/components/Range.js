@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export default styled.input.attrs({type: 'range'})`
+  margin-bottom: 32px;
+  padding: 8px 0;
   -webkit-appearance: none;
   cursor: pointer;
 
