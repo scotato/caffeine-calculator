@@ -112,7 +112,7 @@ const Chart = () => {
                 onChange={e => setHour(e.target.value)}
               />
 
-              <label for="hour" style={{fontFamily: 'monospace'}}>{hour}hr</label>
+              <label for="hour" style={{fontFamily: 'monospace'}}>{getTimestamp(hour)}</label>
               <strong style={{fontFamily: 'monospace'}}>{drink.caffeine / drink.oz * quantity}mg caffeine</strong>
             </Inputs>
             

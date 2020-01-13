@@ -13,32 +13,30 @@ const getHalflifeData = data => {
   })
 }
 
-const getNextHour = hour => (
-  hour >= 23 ? hour++ -23 : ++hour
-)
-
 export const getHourLabels = () => {
-  let timeline = [ STARTHOUR ]
+  const labels = Array
+    .from({length: DURATIONHOURS}, () => 0)
+    .map((hour, index) => ++index)
+    .map(getTimestamp)
 
-  while (timeline.length < DURATIONHOURS) {
-    let current = timeline[ timeline.length - 1 ]
-    let next = getNextHour(current)
-    timeline.push(next)
-  }
-
-  return timeline.map(getTimestamp)
+  return ArrayRotate(labels, STARTHOUR - 1)  
 }
 
 export const getDatasets = drinks => {
   // tally caffeine by hour
-  let data = drinks.reduce((acc, cur) => {
-    const index = cur.hour - STARTHOUR
-    acc[index] += (cur.drink.caffeine / cur.drink.oz * cur.quantity)
+  const data = drinks.reduce((acc, cur) => {
+    acc[cur.hour - 1] += (cur.drink.caffeine / cur.drink.oz * cur.quantity)
     return acc
   }, Array.from({length: DURATIONHOURS}, () => 0))
-  
+
+  const dataRotated = ArrayRotate(data, STARTHOUR - 1)
+  const dataHalflife = getHalflifeData(dataRotated)
+
   return [{
     label: 'caffeine',
-    data: getHalflifeData(data)
+    data: dataHalflife
   }]
 }
+
+const ArrayRotate = (arr, count) =>
+  arr.slice(count, arr.length).concat(arr.slice(0, count))
