@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import { DURATIONHOURS } from '../constants'
+import { colors } from '../theme'
 import { getDatasets, getHourLabels, getTimestamp } from '../helpers'
 import { beverages } from '../data'
 
-import { Line } from 'react-chartjs-2'
+import { Line, defaults } from 'react-chartjs-2'
 import Row from './Row'
 import Label from './Label'
 import Select from './Select'
 import Range from './Range'
 import Button from './Button'
+
+defaults.global.defaultFontColor = colors.default
+defaults.global.defaultFontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+defaults.global.defaultFontSize = 16
 
 const layoutLandscape = css`
   grid-template-rows: initial;
@@ -204,7 +209,7 @@ const Chart = () => {
                       callback: val => `${val}mg`
                   }
               }]
-          }
+            }
           }}
         />
       </Main>

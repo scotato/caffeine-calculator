@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { STARTHOUR, DURATIONHOURS, CAFFEINEHALFLIFE } from './constants'
+import { colors } from './theme'
 
 export const getTimestamp = hour => moment().hour(hour).format('ha')
 
@@ -33,8 +34,9 @@ export const getDatasets = drinks => {
   const dataHalflife = getHalflifeData(dataRotated)
 
   return [{
-    label: 'caffeine',
-    data: dataHalflife
+    label: 'Caffeine',
+    data: dataHalflife,
+    backgroundColor: colors.infoAlpha
   }]
 }
 
