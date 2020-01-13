@@ -159,6 +159,7 @@ const Chart = () => {
             scales: {
               yAxes: [{
                   ticks: {
+                      beginAtZero: true,
                       callback: val => `${val}mg`
                   }
               }]
