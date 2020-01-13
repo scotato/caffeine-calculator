@@ -20,17 +20,28 @@ defaults.global.defaultFontSize = 16
 const layoutLandscape = css`
   grid-template-rows: initial;
   grid-template-columns: 1fr 3fr;
+  grid-template-rows: auto 1fr auto;
   grid-column-gap: 32px;
-  grid-template-areas: "sidebar main";
+  grid-row-gap: 32px;
+  grid-template-areas:
+  "title chart"
+  "body chart"
+  "actions chart";
 `
 
 const layoutPortrait = css`
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto auto;
   grid-template-columns: initial;
   grid-row-gap: 32px;
-  grid-template-areas: 
-    "sidebar"
-    "main";
+  grid-template-areas:
+    "title"
+    "chart"
+    "body"
+    "actions";
+
+    @media (max-width: 375px) {
+      grid-row-gap: 16px;
+    }
 `
 
 const Layout = styled.div`
@@ -49,32 +60,38 @@ const Layout = styled.div`
     ${layoutPortrait}
   }
 
-  @media (max-width: 768px) { 
+  @media (max-width: 768px) {
     ${layoutPortrait}
+  }
+
+  @media (max-width: 375px) {
+    padding: 16px;
   }
 `
 
-const Main = styled.main`
-  grid-area: main;
-  max-width: calc(100vw - 64px);
+const Title = styled.h1`
+  grid-area: title;
 `
 
-const Sidebar = styled.div`
-  display: flex;  
-  flex-direction: column;
-  flex: 1;
-  grid-area: sidebar;
+const ChartWrapper = styled.main`
+  grid-area: chart;
+  max-width: calc(100vw - 64px);
 `
 
 const Body = styled.div`
   display: flex;
-  padding: 32px 0;
+  grid-area: body;
   flex-direction: column;
   flex-grow: 1;
+  
+  @media (max-width: 375px) {
+    padding: 0 16px;
+  }
 `
 
-const Buttons = styled.div`
+const Actions = styled.div`
   display: grid;
+  grid-area: actions;
   grid-auto-flow: row;
   grid-row-gap: 16px;
 `
@@ -105,90 +122,83 @@ const Chart = () => {
 
   return (
     <Layout>
-      <Sidebar>
-        <h1>Caffeine Calculator</h1>
+      <Title>Caffeine Calculator</Title>
 
+      <Body>
         {isAdding ? (
           <>
-            <Body>
-              <Label for="beverage">
-                <span>Beverage</span>
-                <strong>{drink.caffeine / drink.oz * quantity}mg</strong>
-              </Label>
+            <Label for="beverage">
+              <span>Beverage</span>
+              <strong>{drink.caffeine / drink.oz * quantity}mg</strong>
+            </Label>
 
-              <Select
-                name="beverage"
-                autoFocus={true}
-                value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
-                onChange={option => {
-                  const drinkNew = beverages.find(beverage => beverage.title === option.value)
-                  setDrink(drinkNew)
-                  setQuantity(drinkNew.oz)
-                }}
-                options={beverages.map(beverage => (
-                  {value: beverage.title, label: `${beverage.icon} ${beverage.title}`}
-                ))}
-              />
+            <Select
+              name="beverage"
+              autoFocus={true}
+              value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
+              onChange={option => {
+                const drinkNew = beverages.find(beverage => beverage.title === option.value)
+                setDrink(drinkNew)
+                setQuantity(drinkNew.oz)
+              }}
+              options={beverages.map(beverage => (
+                {value: beverage.title, label: `${beverage.icon} ${beverage.title}`}
+              ))}
+            />
 
-              <Label for="quantity">
-                <span>Quantity</span>
-                <strong>{quantity}oz</strong>
-              </Label>
-              
-              <Range
-                name="quantity"
-                value={quantity}
-                min={drink.min}
-                max={drink.max}
-                step={drink.step}
-                onChange={e => setQuantity(e.target.value)}
-              />
-
-              <Label for="time">
-                <span>Time</span>
-                <strong>{getTimestamp(hour)}</strong>
-              </Label>
-              
-              <Range
-                name="time"
-                value={hour}
-                min={1}
-                max={DURATIONHOURS}
-                step={1}
-                onChange={e => setHour(e.target.value)}
-              />
-            </Body>
+            <Label for="quantity">
+              <span>Quantity</span>
+              <strong>{quantity}oz</strong>
+            </Label>
             
-            <Buttons>
-              <Button onClick={setDefaults} type='default'>Cancel</Button>
-              <Button onClick={addDrink} type='success'>Add</Button>
-            </Buttons>
+            <Range
+              name="quantity"
+              value={quantity}
+              min={drink.min}
+              max={drink.max}
+              step={drink.step}
+              onChange={e => setQuantity(e.target.value)}
+            />
+
+            <Label for="time">
+              <span>Time</span>
+              <strong>{getTimestamp(hour)}</strong>
+            </Label>
+            
+            <Range
+              name="time"
+              value={hour}
+              min={1}
+              max={DURATIONHOURS}
+              step={1}
+              onChange={e => setHour(e.target.value)}
+            />
           </>
         ) : (
-          <>
-            <Body>
-              {drinks.sort((a, b) => a.hour - b.hour).map(dose => (
-                <Row
-                  icon={dose.drink.icon}
-                  title={dose.drink.title}
-                  subtitle={`${dose.quantity}oz at ${getTimestamp(dose.hour)}`}
-                  detail={`+${dose.drink.caffeine / dose.drink.oz * dose.quantity}mg`}
-                  onDelete={() => removeDrink(dose)}
-                />
-              ))}
-            </Body>
-
-            <Buttons>
-              <Button
-                onClick={() => setIsAdding(true)}
-                type='info'
-              >Add Drink</Button>
-            </Buttons>
-          </>
+          drinks.sort((a, b) => a.hour - b.hour).map(dose => (
+            <Row
+              icon={dose.drink.icon}
+              title={dose.drink.title}
+              subtitle={`${dose.quantity}oz at ${getTimestamp(dose.hour)}`}
+              detail={`+${dose.drink.caffeine / dose.drink.oz * dose.quantity}mg`}
+              onDelete={() => removeDrink(dose)}
+            />
+          ))
         )}
-      </Sidebar>
+      </Body>
 
-      <Main>
+      <Actions>
+        {isAdding ? (
+          <>
+            <Button onClick={setDefaults} type='default'>Cancel</Button>
+            <Button onClick={addDrink} type='success'>Add</Button>
+          </>
+        ) : (
+          <Button onClick={() => setIsAdding(true)} type='info'>Add Drink</Button>
+        )}
+      </Actions>
+
+      <ChartWrapper>
         <Line
           data={{
             labels: getHourLabels(),
@@ -196,6 +206,9 @@ const Chart = () => {
           }}
           options={{
             maintainAspectRatio: false,
+            legend: {
+              display: false
+            },
             tooltips: {
               callbacks: {
                   title: item => item[0].xLabel,
@@ -212,7 +225,7 @@ const Chart = () => {
             }
           }}
         />
-      </Main>
+      </ChartWrapper>
     </Layout>
   )
 }
