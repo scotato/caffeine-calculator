@@ -1,26 +1,22 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
+import { Reset } from 'styled-reset'
+import GlobalStyle from './GlobalStyle'
 
 const layoutLandscape = css`
-  grid-template-rows: initial;
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: auto 1fr auto;
   grid-column-gap: 32px;
   grid-row-gap: 32px;
-  grid-template-areas:
-  "title chart"
-  "body chart"
-  "actions chart";
+  grid-template-areas: "page chart";
 `
 
 const layoutPortrait = css`
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto;
   grid-template-columns: initial;
   grid-row-gap: 32px;
   grid-template-areas:
-    "title"
     "chart"
-    "body"
-    "actions";
+    "page";
 
     @media (max-width: 375px) {
       grid-row-gap: 16px;
@@ -33,6 +29,7 @@ const Layout = styled.div`
   padding: 32px;
   width: 100%;
   max-width: 1680px;
+  min-height: 100vh;
   box-sizing: border-box;
 
   @media (orientation:landscape) {
@@ -50,6 +47,18 @@ const Layout = styled.div`
   @media (max-width: 375px) {
     padding: 16px;
   }
+`
+
+export const Page = styled.main`
+  display: grid;
+  grid-area: page;
+  grid-template-rows: auto 1fr auto;
+  grid-row-gap: 32px;
+  grid-template-areas:
+    "title"
+    "body"
+    "actions";
+  height: 100%;
 `
 
 export const Title = styled.h1`
@@ -74,9 +83,15 @@ export const Actions = styled.div`
   grid-row-gap: 16px;
 `
 
-export const Chart = styled.main`
+export const Chart = styled.section`
   grid-area: chart;
   max-width: calc(100vw - 64px);
 `
 
-export default Layout
+export default props => (
+  <Layout>
+    <Reset />
+    <GlobalStyle />
+    {props.children}
+  </Layout>
+)

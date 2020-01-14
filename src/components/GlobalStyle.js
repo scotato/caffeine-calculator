@@ -6,11 +6,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  #root {
-    display: grid;
-    min-height: 100vh;
-  }
-
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
   }
