@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { colors } from '../theme'
 
 const Row = styled.div`
   display: grid;
@@ -28,14 +27,14 @@ const Title = styled.div`
 const Subtitle = styled.div`
   grid-area: subtitle;
   font-size: 12px;
-  color: ${colors.default};
+  color: ${props => props.theme.colors.default};
 `
 
 const Detail = styled.strong`
   grid-area: detail;
   justify-self: end;
   font-size: 12px;
-  color: ${colors.success};
+  color: ${props => props.theme.colors.success};
 `
 
 const Button = styled.button`

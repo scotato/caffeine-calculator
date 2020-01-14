@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { colors } from '../theme'
 
 export default styled.input.attrs({type: 'range'})`
   margin-bottom: 32px;
@@ -9,7 +8,7 @@ export default styled.input.attrs({type: 'range'})`
 
   &::-webkit-slider-runnable-track {
     height: 5px;
-    background: ${colors.defaultLight};
+    background: ${props => props.theme.colors.defaultLight};
     border: none;
     border-radius: 3px;
     will-change: background;
@@ -22,7 +21,7 @@ export default styled.input.attrs({type: 'range'})`
     height: 16px;
     width: 16px;
     border-radius: 50%;
-    background: ${colors.defaultLight};
+    background: ${props => props.theme.colors.defaultLight};
     will-change: background;
     transition: background 0.3s ease-out;
     -webkit-appearance: none;
@@ -39,16 +38,16 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &:focus::-webkit-slider-runnable-track {
-    background: ${colors.info};
+    background: ${props => props.theme.colors.info};
   }
 
   &:focus::-webkit-slider-thumb {
-    background: ${colors.info};
+    background: ${props => props.theme.colors.info};
   }
 
   &::-moz-range-track {
     height: 5px;
-    background: ${colors.defaultLight};
+    background: ${props => props.theme.colors.defaultLight};
     border: none;
     border-radius: 3px;
     will-change: background;
@@ -95,7 +94,7 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &::-ms-fill-upper {
-    background: ${colors.defaultLight};
+    background: ${props => props.theme.colors.defaultLight};
     border-radius: 10px;
     will-change: background;
     transition: background 0.3s ease-out;
@@ -112,10 +111,10 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &:focus::-ms-fill-lower {
-    background: ${colors.info};
+    background: ${props => props.theme.colors.info};
   }
 
   &:focus::-ms-fill-upper {
-    background: ${colors.info};
+    background: ${props => props.theme.colors.info};
   }
 `

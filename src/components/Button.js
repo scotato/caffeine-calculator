@@ -1,7 +1,6 @@
 import styled from 'styled-components'
-import { colors } from '../theme'
 
-const backgroundColor = ({ type = 'default'}) => colors[type]
+const backgroundColor = ({ type = 'default', theme }) => theme.colors[type]
 
 export default styled.button`
   padding: 16px 24px;

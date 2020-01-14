@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   default: '#9ba6b0',
   defaultLight: '#d4d9dd',
   info: '#007bff',
@@ -6,4 +6,9 @@ export const colors = {
   success: '#1bc546',
   warning: '#ffc107',
   danger: '#dc3545',
+}
+
+export default {
+  colors,
+  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
 }
