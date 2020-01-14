@@ -13,33 +13,18 @@ export default () => {
   const [state, setState] = useContext(ChartContext)
   const { isAdding, drinks, drink, quantity, hour } = state
 
-  const setDrink = drink => {
-    setState({
-      ...state,
-      drink
-    })
-  }
+  const setQuantity = quantity => setState({ ...state, quantity })
+  const setHour = hour => setState({ ...state, hour })
+  const setDrink = drink => setState({
+    ...state,
+    drink,
+    quantity: drink.oz
+  })
 
-  const removeDrink = doseToRemove => {
-    setState({
-      ...state,
-      drinks: drinks.filter(dose => doseToRemove.id !== dose.id)
-    })
-  }
-
-  const setQuantity = quantity => {
-    setState({
-      ...state,
-      quantity
-    })
-  }
-
-  const setHour = hour => {
-    setState({
-      ...state,
-      hour
-    })
-  }
+  const removeDrink = doseToRemove => setState({
+    ...state,
+    drinks: drinks.filter(dose => doseToRemove.id !== dose.id)
+  })
 
   return (
     <Body>
@@ -58,7 +43,6 @@ export default () => {
             onChange={option => {
               const drinkNew = beverages.find(beverage => beverage.title === option.value)
               setDrink(drinkNew)
-              setQuantity(drinkNew.oz)
             }}
             options={beverages.map(beverage => (
               {value: beverage.title, label: `${beverage.icon} ${beverage.title}`}
