@@ -4,29 +4,21 @@ import { Reset } from 'styled-reset'
 import GlobalStyle from './GlobalStyle'
 
 const layoutLandscape = css`
-  grid-template-columns: 1fr 3fr;
-  grid-column-gap: 32px;
-  grid-row-gap: 32px;
+  grid-template-columns: 1fr 2.5fr;
   grid-template-areas: "page chart";
 `
 
 const layoutPortrait = css`
   grid-template-rows: auto auto;
   grid-template-columns: initial;
-  grid-row-gap: 32px;
   grid-template-areas:
     "chart"
     "page";
-
-    @media (max-width: 375px) {
-      grid-row-gap: 16px;
-    }
 `
 
 const Layout = styled.div`
   display: grid;
   margin: 0 auto;
-  padding: 32px;
   width: 100%;
   max-width: 1680px;
   min-height: 100vh;
@@ -43,14 +35,11 @@ const Layout = styled.div`
   @media (max-width: 768px) {
     ${layoutPortrait}
   }
-
-  @media (max-width: 375px) {
-    padding: 16px;
-  }
 `
 
 export const Page = styled.main`
   display: grid;
+  padding: 32px;
   grid-area: page;
   grid-template-rows: auto 1fr auto;
   grid-row-gap: 32px;
@@ -59,6 +48,11 @@ export const Page = styled.main`
     "body"
     "actions";
   height: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 375px) {
+    padding: 16px;
+  }
 `
 
 export const Title = styled.h1`
@@ -93,8 +87,16 @@ export const Actions = styled.div`
 `
 
 export const Chart = styled.section`
+  margin: 32px 32px 32px 0;
+  padding: 32px;
   grid-area: chart;
   max-width: calc(100vw - 64px);
+  background-color: rgba(0, 0, 0, 0.025);
+  border-radius: 16px;
+  
+  @media (max-width: 375px) {
+    padding: 16px;
+  }
 `
 
 export default props => (

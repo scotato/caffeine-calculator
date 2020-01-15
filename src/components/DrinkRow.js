@@ -7,9 +7,9 @@ const DrinkRow = styled(Link)`
   display: grid;
   padding: 16px 0;
   align-items: center;
-  grid-column-gap: 8px;
+  grid-column-gap: 12px;
   grid-row-gap: 4px;
-  grid-template-columns: 32px auto auto 32px;
+  grid-template-columns: 32px auto auto 24px;
   grid-template-rows: 16px 12px;
   grid-template-areas: 
     "emoji title detail icon"
@@ -48,9 +48,11 @@ const Detail = styled.strong`
   color: ${props => props.theme.colors.success};
 `
 
-const IconRight = styled(Icon).attrs({name: 'chevron-right'})`
+const IconRight = styled.div`
+  display: grid;
   grid-area: icon;
   color: ${props => props.theme.colors.defaultLight};
+  place-items: center;
 `
 
 export default props => (
@@ -59,6 +61,8 @@ export default props => (
     <Title>{props.title}</Title>
     <Subtitle>{props.subtitle}</Subtitle>
     <Detail>{props.detail}</Detail>
-    <IconRight fixedWidth />
+    <IconRight>
+      <Icon name="chevron-right" />
+    </IconRight>
   </DrinkRow>
 )
