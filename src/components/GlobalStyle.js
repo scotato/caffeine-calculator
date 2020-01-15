@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import reboot from 'styled-reboot'
+import 'rc-slider/assets/index.css'
 
 const GlobalStyle = createGlobalStyle`
   ${({ theme }) =>
@@ -51,6 +52,12 @@ const GlobalStyle = createGlobalStyle`
 
   strong {
     font-weight: 700;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
   }
 `
 

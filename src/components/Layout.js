@@ -12,7 +12,7 @@ const layoutLandscape = css`
 `
 
 const layoutPortrait = css`
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto ${props => props.theme.device.phoneSmall} 1fr;
   grid-template-columns: auto;
   grid-template-areas:
     "navbar"
@@ -25,7 +25,7 @@ const Layout = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: ${props => props.theme.device.desktopLarge};
-  min-height: 100vh;
+  min-height: 100%;
 
   ${props => props.theme.media.landscape`
     ${layoutLandscape}
@@ -37,6 +37,10 @@ const Layout = styled.div`
 
   ${props => props.theme.media.tabletVertical`
     ${layoutPortrait}
+  `}
+
+  ${props => props.theme.media.phone`
+    grid-template-rows: auto auto 1fr;
   `}
 `
 
@@ -83,8 +87,13 @@ export const NavBar = styled.nav`
 
 export const Body = styled.div`
   display: flex;
+  padding: 0 ${props => props.theme.size[500]};
   flex-direction: column;
   flex-grow: 1;
+
+  ${props => props.theme.media.phoneSmall`
+    padding: ${props => props.theme.size[500]};
+  `}
 `
 
 export const Actions = styled.div`

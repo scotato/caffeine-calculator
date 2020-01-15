@@ -10,7 +10,7 @@ import Button, { TextButton, BackButton } from './Button'
 import NavBar from './NavBar'
 import Label from './Label'
 import Select from './Select'
-import Range from './Range'
+import Slider from './Slider'
 
 export default props => {
   const { state, dispatch } = useContext(Context)
@@ -60,13 +60,14 @@ export default props => {
           <strong>{quantity}oz</strong>
         </Label>
         
-        <Range
+        <Slider
           name="quantity"
           value={quantity}
           min={drink.min}
           max={drink.max}
           step={drink.step}
-          onChange={e => dispatch({type: 'setQuantity', payload: e.target.value})}
+          onChange={payload => dispatch({type: 'setQuantity', payload })}
+          dots
         />
 
         <Label htmlFor="time">
@@ -74,13 +75,14 @@ export default props => {
           <strong>{getTimestamp(hour)}</strong>
         </Label>
         
-        <Range
+        <Slider
           name="time"
           value={hour}
           min={1}
           max={DURATIONHOURS}
           step={1}
-          onChange={e => dispatch({type: 'setHour', payload: e.target.value})}
+          onChange={payload => dispatch({type: 'setHour', payload })}
+          dots
         />
       </Body>
       
