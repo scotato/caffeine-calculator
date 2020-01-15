@@ -87,11 +87,10 @@ export const NavBar = styled.nav`
 
 export const Body = styled.div`
   display: flex;
-  padding: 0 ${props => props.theme.size[500]};
   flex-direction: column;
   flex-grow: 1;
 
-  ${props => props.theme.media.phoneSmall`
+  ${props => props.theme.media.phone`
     padding: ${props => props.theme.size[500]};
   `}
 `
