@@ -16,6 +16,7 @@ const button = css`
   cursor: pointer;
   background-color: ${backgroundColor};
   border-radius: ${props => props.theme.size[900]};
+  user-select: none;
   border: 0;
 
   &:hover, &:active, &:focus {

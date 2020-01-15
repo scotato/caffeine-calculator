@@ -5,4 +5,5 @@ export default styled.label`
   margin-bottom: ${props => props.theme.size[400]};
   justify-content: space-between;
   font-size: ${props => props.theme.size[500]};
+  user-select: none;
 `

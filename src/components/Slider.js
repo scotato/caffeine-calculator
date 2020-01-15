@@ -5,7 +5,7 @@ export default styled(Slider)`
   margin-bottom: ${props => props.theme.size[700]};
   padding: ${props => props.theme.size[200]} 0;
   height: ${props => props.theme.size[500]};
-  /* box-sizing: border-box; */
+  user-select: none;
 
   .rc-slider-rail {
     background-color: ${props => props.theme.grayscale[100]};
@@ -27,7 +27,8 @@ export default styled(Slider)`
     background-color: ${props => props.theme.grayscale[300]};
     border: 0;
 
-    &:focus {
+    &:focus,
+    &:active {
       box-shadow: 0 0 0 ${props => props.theme.size[100]} ${props => props.theme.color.info};
     }
   }
