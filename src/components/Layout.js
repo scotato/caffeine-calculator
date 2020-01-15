@@ -5,13 +5,14 @@ import GlobalStyle from './GlobalStyle'
 
 const layoutLandscape = css`
   grid-template-columns: ${props => props.theme.device.phoneSmall} auto;
+  grid-template-rows: auto 1fr;
   grid-template-areas:
     "navbar chart"
     "page chart";
 `
 
 const layoutPortrait = css`
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto 1fr;
   grid-template-columns: auto;
   grid-template-areas:
     "navbar"
