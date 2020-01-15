@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Context } from "./Context"
 import { Page, NavTitle, Body, Actions } from './Layout'
 import { LinkButton } from './Button'
-import Drinks from './Drinks'
+import Doses from './Doses'
 
 export const HomeNav = () => <NavTitle>Caffeine Calculator</NavTitle>
 
@@ -12,8 +12,8 @@ export default () => {
   return (
     <Page>
       <Body>
-        <Drinks />
-        {!state.drinks.length && (
+        <Doses />
+        {!state.doses.length && (
           <>
             <p>Caffeine's biological half-life (the time required for the body to eliminate one-half of a dose) is between 3 and 7 hours.</p>
             <p><a href="https://en.wikipedia.org/wiki/Caffeine#Adverse_effects" target="_blank" rel="noopener noreferrer">Adverse Effects of Caffeine</a></p>
@@ -23,8 +23,8 @@ export default () => {
         )}
       </Body>
       <Actions>
-        <LinkButton to="add-drink" type="info">
-          Add Drink
+        <LinkButton to="add-dose" type="info">
+          Add Dose
         </LinkButton>
       </Actions>
     </Page>

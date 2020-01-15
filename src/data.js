@@ -19,7 +19,7 @@
 // Energy shot	1 (30)	40-100 = 70
 
 // https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/caffeine/art-20045678
-// Up to 400 milligrams (mg) of caffeine a day appears to be safe for most healthy adults. That's roughly the amount of caffeine in four cups of brewed coffee, 10 cans of cola or two "energy shot" drinks. Keep in mind that the actual caffeine content in beverages varies widely, especially among energy drinks.
+// Up to 400 milligrams (mg) of caffeine a day appears to be safe for most healthy adults. That's roughly the amount of caffeine in four cups of brewed coffee, 10 cans of cola or two "energy shot" doses. Keep in mind that the actual caffeine content in beverages varies widely, especially among energy doses.
 
 export const beverages = [
   {

@@ -32,8 +32,8 @@ function reducer(state, action) {
     case 'saveDose':
       return {
         ...state,
-        drinks: [
-          ...state.drinks.filter(dose => state.id !== dose.id), 
+        doses: [
+          ...state.doses.filter(dose => state.id !== dose.id), 
           {
             id: state.id,
             drink: state.drink,
@@ -45,7 +45,7 @@ function reducer(state, action) {
     case 'removeDose':
       return {
         ...state,
-        drinks: state.drinks.filter(dose => action.payload !== dose.id.toString())
+        doses: state.doses.filter(dose => action.payload !== dose.id.toString())
       }
     case 'setIsAddEdit':
         return {
@@ -66,7 +66,7 @@ const newDose = () => ({
 
 const initialState = {
   id: null,
-  drinks: [],
+  doses: [],
   drink: beverages[0],
   quantity: beverages[0].oz,
   hour: 8,

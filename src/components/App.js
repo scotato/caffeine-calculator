@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 import { ContextProvider } from "./Context"
 import Layout, { NavRouter, PageRouter } from './Layout'
 import Home, { HomeNav } from './Home'
-import Drink, { DrinkNav } from './Drink'
+import Dose, { DoseNav } from './Dose'
 import Chart from './Chart'
 import theme from '../theme'
 
@@ -16,14 +16,14 @@ export default () => (
       <Layout>
         <NavRouter>
           <HomeNav path="/" />
-          <DrinkNav path="add-drink" />
-          <DrinkNav path="edit-drink/:id" />
+          <DoseNav path="add-dose" />
+          <DoseNav path="edit-dose/:id" />
         </NavRouter>
 
         <PageRouter>
           <Home path="/" />
-          <Drink path="add-drink" />
-          <Drink path="edit-drink/:id" />
+          <Dose path="add-dose" />
+          <Dose path="edit-dose/:id" />
           <NotFound default />
         </PageRouter>
 

@@ -8,10 +8,10 @@ import { Line, defaults } from 'react-chartjs-2'
 export default () => {
   const theme = useContext(ThemeContext)
   const { state } = useContext(Context)
-  const { drinks, isAddEdit, ...dose } = state
-  const drinkData = isAddEdit
-    ? [...drinks.filter(d => dose.id !== d.id), dose]
-    : drinks
+  const { doses, isAddEdit, ...dose } = state
+  const doseData = isAddEdit
+    ? [...doses.filter(d => dose.id !== d.id), dose]
+    : doses
   
   defaults.global.defaultFontColor = theme.grayscale[500]
   defaults.global.defaultFontFamily = theme.fontFamily
@@ -21,7 +21,7 @@ export default () => {
     labels: getHourLabels(),
     datasets: [{
       label: 'Caffeine',
-      data: getDatasets(drinkData),
+      data: getDatasets(doseData),
       backgroundColor: theme.color.infoAlpha
     }]
   }

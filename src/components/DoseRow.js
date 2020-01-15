@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from "@reach/router"
 import Icon from "./Icon"
 
-const DrinkRow = styled(Link)`
+const DoseRow = styled(Link)`
   display: grid;
   padding: ${props => props.theme.size[500]} 0;
   align-items: center;
@@ -60,7 +60,7 @@ const IconRight = styled.div`
 `
 
 export default props => (
-  <DrinkRow to={props.to}>
+  <DoseRow to={props.to}>
     <Emoji>{props.icon}</Emoji>
     <Title>{props.title}</Title>
     <Subtitle>{props.subtitle}</Subtitle>
@@ -68,5 +68,5 @@ export default props => (
     <IconRight>
       <Icon name="chevron-right" />
     </IconRight>
-  </DrinkRow>
+  </DoseRow>
 )

@@ -22,9 +22,9 @@ export const getHourLabels = () => {
   return ArrayRotate(labels, STARTHOUR - 1)  
 }
 
-export const getDatasets = drinks => {
+export const getDatasets = doses => {
   // tally caffeine by hour
-  const data = drinks.reduce((acc, cur) => {
+  const data = doses.reduce((acc, cur) => {
     acc[cur.hour - 1] += (cur.drink.caffeine / cur.drink.oz * cur.quantity)
     return acc
   }, Array.from({length: DURATIONHOURS}, () => 0))

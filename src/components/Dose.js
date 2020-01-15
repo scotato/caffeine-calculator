@@ -14,11 +14,11 @@ import Slider from './Slider'
 
 export default props => {
   const { state, dispatch } = useContext(Context)
-  const { drinks, drink, quantity, hour } = state
+  const { doses, drink, quantity, hour } = state
   const submitText = props.id ? "Save" : "Add"
 
   useEffect(() => {
-    const dose = drinks.find(dose => dose.id.toString() === props.id)
+    const dose = doses.find(dose => dose.id.toString() === props.id)
     const shouldRedirect = props.id && !dose
 
     if (shouldRedirect) {
@@ -99,9 +99,9 @@ export default props => {
   )
 }
 
-export const DrinkNav = props => {
+export const DoseNav = props => {
   const { dispatch } = useContext(Context)
-  const title = props.id ? "Edit Drink" : "Add Drink"
+  const title = props.id ? "Edit Dose" : "Add Dose"
 
   const removeDose = () => {
     navigate("/")
