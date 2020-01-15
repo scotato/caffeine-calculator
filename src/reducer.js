@@ -1,6 +1,6 @@
 import { beverages } from './data'
 
-export function reducer(state, action) {
+function reducer(state, action) {
   switch (action.type) {
     case 'setDose':
       let dose = action.payload || newDose()
@@ -64,7 +64,7 @@ const newDose = () => ({
   hour: 8
 })
 
-export const initialState = {
+const initialState = {
   id: null,
   drinks: [],
   drink: beverages[0],
@@ -73,4 +73,4 @@ export const initialState = {
   isAddEdit: false
 }
 
-export default { reducer, initialState }
+export { reducer, initialState }
