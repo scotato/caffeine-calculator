@@ -102,6 +102,7 @@ export const Chart = styled.section`
   padding: ${props => props.theme.size[700]};
   grid-area: chart;
   max-width: 100vw;
+  background-color: ${props => props.theme.grayscale[100]};
 
   ${props => props.theme.media.phoneSmall`
     padding: ${props => props.theme.size[500]};

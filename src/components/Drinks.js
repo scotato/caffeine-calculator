@@ -4,9 +4,9 @@ import { getTimestamp } from '../helpers'
 import DrinkRow from './DrinkRow'
 
 export default () => {
-  const [{ drinks }] = useContext(ChartContext)
+  const { state } = useContext(ChartContext)
 
-  return drinks.sort((a, b) => a.hour - b.hour).map(dose => (
+  return state.drinks.sort((a, b) => a.hour - b.hour).map(dose => (
     <DrinkRow
       key={dose.id}
       icon={dose.drink.icon}

@@ -4,6 +4,7 @@ import { NavBar } from './Layout'
 
 
 const NavBarTitle = styled.h1`
+  margin: 0;
   text-align: center;
   font-size: inherit;
 `

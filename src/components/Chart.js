@@ -7,10 +7,10 @@ import { Line, defaults } from 'react-chartjs-2'
 
 export default () => {
   const theme = useContext(ThemeContext)
-  const [state] = useContext(ChartContext)
-  const { drinks, doseAddEdit } = state
-  const drinkData = doseAddEdit.id
-    ? [...drinks.filter(dose => doseAddEdit.id !== dose.id), doseAddEdit]
+  const { state } = useContext(ChartContext)
+  const { drinks, isAddEdit, ...dose } = state
+  const drinkData = isAddEdit
+    ? [...drinks.filter(d => dose.id !== d.id), dose]
     : drinks
   
   defaults.global.defaultFontColor = theme.grayscale[500]
