@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { ChartContext } from "./ChartContext"
+import { Context } from "./Context"
 import { Chart  } from './Layout'
 import { getDatasets, getHourLabels } from '../helpers'
 import { Line, defaults } from 'react-chartjs-2'
 
 export default () => {
   const theme = useContext(ThemeContext)
-  const { state } = useContext(ChartContext)
+  const { state } = useContext(Context)
   const { drinks, isAddEdit, ...dose } = state
   const drinkData = isAddEdit
     ? [...drinks.filter(d => dose.id !== d.id), dose]

@@ -1,7 +1,7 @@
 import React, { createContext, useMemo, useReducer } from 'react'
 import { beverages } from '../data'
 
-const ChartContext = createContext([{}, () => {}])
+const Context = createContext([{}, () => {}])
 
 function reducer(state, action) {
   switch (action.type) {
@@ -76,7 +76,7 @@ const initialState = {
   isAddEdit: false
 }
 
-const ChartProvider = props => {
+const ContextProvider = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const value = useMemo(() => {
@@ -84,10 +84,10 @@ const ChartProvider = props => {
   }, [state, dispatch])
 
   return (
-    <ChartContext.Provider value={value}>
+    <Context.Provider value={value}>
       {props.children}
-    </ChartContext.Provider>
+    </Context.Provider>
   )
 }
 
-export { ChartContext, ChartProvider }
+export { Context, ContextProvider }

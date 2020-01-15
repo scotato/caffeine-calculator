@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from "@reach/router"
 import { ThemeProvider } from 'styled-components'
-import { ChartProvider } from "./ChartContext"
+import { ContextProvider } from "./Context"
 import Layout, { NavRouter, PageRouter } from './Layout'
 import Home, { HomeNav } from './Home'
 import Drink, { DrinkNav } from './Drink'
@@ -12,7 +12,7 @@ const NotFound = () => <Redirect to="/" />
 
 export default () => (
   <ThemeProvider theme={theme}>
-    <ChartProvider>
+    <ContextProvider>
       <Layout>
         <NavRouter>
           <HomeNav path="/" />
@@ -29,6 +29,6 @@ export default () => (
 
         <Chart />
       </Layout>
-    </ChartProvider>
+    </ContextProvider>
   </ThemeProvider>
 )

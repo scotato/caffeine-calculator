@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { navigate } from "@reach/router"
-import { ChartContext } from "./ChartContext"
+import { Context } from "./Context"
 import { DURATIONHOURS } from '../constants'
 import { beverages } from '../data'
 import { getTimestamp } from '../helpers'
@@ -13,7 +13,7 @@ import Select from './Select'
 import Range from './Range'
 
 export default props => {
-  const { state, dispatch } = useContext(ChartContext)
+  const { state, dispatch } = useContext(Context)
   const { drinks, drink, quantity, hour } = state
   const submitText = props.id ? "Save" : "Add"
 
@@ -99,7 +99,7 @@ export default props => {
 }
 
 export const DrinkNav = props => {
-  const { dispatch } = useContext(ChartContext)
+  const { dispatch } = useContext(Context)
   const title = props.id ? "Edit Drink" : "Add Drink"
 
   const removeDose = () => {

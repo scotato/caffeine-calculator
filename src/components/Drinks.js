@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { ChartContext } from "./ChartContext"
+import { Context } from "./Context"
 import { getTimestamp } from '../helpers'
 import DrinkRow from './DrinkRow'
 
 export default () => {
-  const { state } = useContext(ChartContext)
+  const { state } = useContext(Context)
 
   return state.drinks.sort((a, b) => a.hour - b.hour).map(dose => (
     <DrinkRow
