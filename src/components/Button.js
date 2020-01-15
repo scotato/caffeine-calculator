@@ -1,9 +1,12 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link as LinkRouter } from "@reach/router"
+import Icon from './Icon'
 
 const backgroundColor = ({ type = 'default', theme }) => theme.colors[type]
+const color = ({ type = 'info', theme }) => theme.colors[type]
 
-const buttonStyle = css`
+const button = css`
   padding: 16px 24px;
   color: white;
   font-size: inherit;
@@ -16,10 +19,33 @@ const buttonStyle = css`
   border: 0;
 `
 
-export const Link = styled(LinkRouter)`
-  ${buttonStyle}
+const text = css`
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: inherit;
+  color: ${color};
+  cursor: pointer;
 `
 
+export const TextButton = styled.button`
+  ${text}
+`
+
+export const Link = styled(LinkRouter)`
+  ${text}
+`
+
+export const LinkButton = styled(LinkRouter)`
+  ${button}
+`
+
+export const BackButton = () =>
+  <Link to="../">
+    <Icon name="chevron-left" fixedWidth />Back
+  </Link>
+
 export default styled.button`
-  ${buttonStyle}
+  ${button}
 `

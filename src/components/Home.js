@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { Page, Title, Body, Actions } from './Layout'
 import { ChartContext } from "./ChartContext"
-import { Link } from './Button'
+import { LinkButton } from './Button'
 import Drinks from './Drinks'
 
 export default () => {
@@ -17,9 +17,9 @@ export default () => {
         <Drinks />
       </Body>
       <Actions>
-        <Link to="add-drink" type="info">
+        <LinkButton to="add-drink" type="info">
           Add Drink
-        </Link>
+        </LinkButton>
       </Actions>
     </Page>
   )

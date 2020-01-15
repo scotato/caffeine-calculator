@@ -55,14 +55,23 @@ export const Page = styled.main`
   grid-template-rows: auto 1fr auto;
   grid-row-gap: 32px;
   grid-template-areas:
-    "title"
+    "navbar"
     "body"
     "actions";
   height: 100%;
 `
 
 export const Title = styled.h1`
-  grid-area: title;
+  grid-area: navbar;
+`
+
+export const NavBar = styled.nav`
+  display: grid;
+  padding-bottom: 16px;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-area: navbar;
+  align-items: baseline;
+  border-bottom: 2px solid ${props => props.theme.colors.defaultUltraLight};
 `
 
 export const Body = styled.div`

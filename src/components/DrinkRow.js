@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from "@reach/router"
+import Icon from "./Icon"
 
 const DrinkRow = styled(Link)`
   display: grid;
@@ -8,11 +9,11 @@ const DrinkRow = styled(Link)`
   align-items: center;
   grid-column-gap: 8px;
   grid-row-gap: 4px;
-  grid-template-columns: 32px auto auto;
+  grid-template-columns: 32px auto auto 32px;
   grid-template-rows: 16px 12px;
   grid-template-areas: 
-    "icon title detail"
-    "icon subtitle detail";
+    "emoji title detail icon"
+    "emoji subtitle detail icon";
   color: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -24,8 +25,8 @@ const DrinkRow = styled(Link)`
   }
 `
 
-const Icon = styled.div`
-  grid-area: icon;
+const Emoji = styled.div`
+  grid-area: emoji;
   font-size: 32px;
 `
 
@@ -47,11 +48,17 @@ const Detail = styled.strong`
   color: ${props => props.theme.colors.success};
 `
 
+const IconRight = styled(Icon).attrs({name: 'chevron-right'})`
+  grid-area: icon;
+  color: ${props => props.theme.colors.defaultLight};
+`
+
 export default props => (
   <DrinkRow to={props.to}>
-    <Icon>{props.icon}</Icon>
+    <Emoji>{props.icon}</Emoji>
     <Title>{props.title}</Title>
     <Subtitle>{props.subtitle}</Subtitle>
     <Detail>{props.detail}</Detail>
+    <IconRight fixedWidth />
   </DrinkRow>
 )

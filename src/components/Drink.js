@@ -1,12 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import { navigate } from "@reach/router"
-import { Page, Title, Body, Actions } from './Layout'
-import Button, { Link } from './Button'
+import { Page, Body, Actions } from './Layout'
+import Button, { TextButton, BackButton } from './Button'
 
 import { ChartContext } from "./ChartContext"
 import { DURATIONHOURS } from '../constants'
 import { beverages } from '../data'
 import { getTimestamp } from '../helpers'
+import NavBar from './NavBar'
 import Label from './Label'
 import Select from './Select'
 import Range from './Range'
@@ -84,8 +85,12 @@ export default props => {
 
   return id ? (
     <Page>
-      <Title>{title}</Title>
-      
+      <NavBar
+        title={title}
+        primaryAction={<BackButton />}
+        secondaryAction={props.id && <TextButton onClick={removeDrink} type="danger">Delete</TextButton>}
+      />
+
       <Body>
         <Label htmlFor="beverage">
           <span>Beverage</span>
@@ -136,9 +141,7 @@ export default props => {
       </Body>
       
       <Actions>
-        <Link to="/">Cancel</Link>
         <Button onClick={saveDrink} type='success'>{submitText}</Button>
-        {props.id && <Button onClick={removeDrink} type="danger">Delete</Button>}
       </Actions>
     </Page>
   ) : null
