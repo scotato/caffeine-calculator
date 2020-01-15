@@ -17,6 +17,10 @@ const button = css`
   background-color: ${backgroundColor};
   border-radius: ${props => props.theme.size[900]};
   border: 0;
+
+  &:hover, &:active, &:focus {
+    color: white;
+  }
 `
 
 const text = css`

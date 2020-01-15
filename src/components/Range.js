@@ -28,8 +28,8 @@ export default styled.input.attrs({type: 'range'})`
 
     ${props => props.theme.media.tabletVertical`
       margin-top: -${props => props.theme.size[300]};
-      height: ${props => props.theme.size[700]};
-      width: ${props => props.theme.size[700]};
+      height: ${props => props.theme.size[600]};
+      width: ${props => props.theme.size[600]};
     `}
   }
 

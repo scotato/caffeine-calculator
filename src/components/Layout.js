@@ -1,19 +1,18 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Reset } from 'styled-reset'
 import GlobalStyle from './GlobalStyle'
 
 const layoutLandscape = css`
-  grid-template-columns: 1fr 2.5fr;
+  grid-template-columns: ${props => props.theme.device.phoneSmall} auto;
   grid-template-areas: "page chart";
 `
 
 const layoutPortrait = css`
   grid-template-rows: auto auto;
-  grid-template-columns: initial;
+  grid-template-columns: auto;
   grid-template-areas:
-    "chart"
-    "page";
+    "page"
+    "chart";
 `
 
 const Layout = styled.div`
@@ -22,7 +21,6 @@ const Layout = styled.div`
   width: 100%;
   max-width: ${props => props.theme.device.desktopLarge};
   min-height: 100vh;
-  box-sizing: border-box;
 
   ${props => props.theme.media.landscape`
     ${layoutLandscape}
@@ -48,10 +46,9 @@ export const Page = styled.main`
     "body"
     "actions";
   height: 100%;
-  box-sizing: border-box;
 
   ${props => props.theme.media.phoneSmall`
-    padding: ${props => props.theme.size[500]};
+    padding: ${props => props.theme.size[600]};
   `}
 `
 
@@ -95,6 +92,13 @@ export const Chart = styled.section`
   background-color: rgba(0, 0, 0, 0.025);
   border-radius: ${props => props.theme.size[500]};
   
+  ${props => props.theme.media.tabletVertical`
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 0;
+  `}
+
   ${props => props.theme.media.phoneSmall`
     padding: ${props => props.theme.size[500]};
   `}
@@ -102,7 +106,6 @@ export const Chart = styled.section`
 
 export default props => (
   <Layout>
-    <Reset />
     <GlobalStyle />
     {props.children}
   </Layout>

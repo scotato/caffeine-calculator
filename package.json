@@ -14,7 +14,7 @@
     "react-dom": "^16.12.0",
     "react-select": "3.0.8",
     "styled-components": "5.0.0",
-    "styled-reset": "4.0.9"
+    "styled-reboot": "4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

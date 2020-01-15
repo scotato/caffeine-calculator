@@ -33,6 +33,7 @@ const size = {
 }
 
 const fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+const fontFamilyMono = 'Source Code Pro, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
 
 const device = {
   desktopLarge: "1600px",
@@ -71,6 +72,7 @@ export default {
   grayscale,
   size,
   fontFamily,
+  fontFamilyMono,
   media,
   device
 }
