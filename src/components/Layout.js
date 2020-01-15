@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { Router } from "@reach/router"
 import GlobalStyle from './GlobalStyle'
@@ -40,19 +40,14 @@ const Layout = styled.div`
   `}
 `
 
-export const Page = styled.main`
-  display: grid;
-  padding: ${props => props.theme.size[700]};
-  grid-template-rows: 1fr auto;
-  grid-row-gap: ${props => props.theme.size[700]};
-  grid-template-areas:
-    "body"
-    "actions";
+const PageStyled = styled.main`
+  display: flex;
+  padding: ${props => props.theme.size[600]} ${props => props.theme.size[700]};
+  flex-direction: column;
   height: 100%;
-  background-color: white;
 
   ${props => props.theme.media.phoneSmall`
-    padding: ${props => props.theme.size[600]};
+    padding: ${props => props.theme.size[500]};
   `}
 `
 
@@ -66,8 +61,15 @@ export const NavRouter = styled(Router)`
 
 export const NavTitle = styled.h1`
   margin: 0;
-  padding: ${props => props.theme.size[700]};
-  background-color: white;
+  padding:
+    ${props => props.theme.size[700]}
+    ${props => props.theme.size[700]}
+    0
+    ${props => props.theme.size[700]};
+
+  ${props => props.theme.media.tabletVertical`
+    padding: ${props => props.theme.size[600]};
+  `}
 `
 
 export const NavBar = styled.nav`
@@ -77,25 +79,23 @@ export const NavBar = styled.nav`
   align-items: baseline;
   border-bottom: ${props => props.theme.size[100]} solid ${props => props.theme.grayscale[200]};
   font-size: ${props => props.theme.size[500]};
-  background-color: white;
 `
 
 export const Body = styled.div`
   display: flex;
-  grid-area: body;
   flex-direction: column;
   flex-grow: 1;
-  
-  ${props => props.theme.media.phoneSmall`
-    padding: 0 ${props => props.theme.size[500]};
-  `}
 `
 
 export const Actions = styled.div`
   display: grid;
-  grid-area: actions;
+  margin-top: ${props => props.theme.size[600]} ${props => props.theme.size[700]};
   grid-auto-flow: row;
   grid-row-gap: ${props => props.theme.size[500]};
+
+  ${props => props.theme.media.phoneSmall`
+    margin-top: ${props => props.theme.size[500]};
+  `}
 `
 
 export const Chart = styled.section`
@@ -108,6 +108,12 @@ export const Chart = styled.section`
     padding: ${props => props.theme.size[500]};
   `}
 `
+
+// scroll to top after route updates
+export const Page = props => {
+  useEffect(() => { window.scrollTo(0, 0) }, [])
+  return <PageStyled {...props} />
+}
 
 export default props => (
   <Layout>

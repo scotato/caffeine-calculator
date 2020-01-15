@@ -44,7 +44,6 @@ export default props => {
 
         <Select
           name="beverage"
-          autoFocus={true}
           isSearchable={false}
           value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
           onChange={option => {
