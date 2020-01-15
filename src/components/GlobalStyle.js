@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: ${props => props.theme.size[600]};
     font-family: ${props => props.theme.fontFamily};
+    color: ${props => props.theme.grayscale[900]};
   }
 
   h1, h2, h3, h4, h5, h6 {

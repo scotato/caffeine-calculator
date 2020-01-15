@@ -9,11 +9,9 @@ const NavBarTitle = styled.h1`
 `
 
 const NavBarPrimary = styled.div`
-  font-size: ${props => props.theme.size[500]};
 `
 
 const NavBarSecondary = styled.div`
-  font-size: ${props => props.theme.size[500]};
   text-align: right;
 `
 

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.input.attrs({type: 'range'})`
   margin-bottom: ${props => props.theme.size[700]};
-  padding: ${props => props.theme.size[300]} 0;
+  padding: ${props => props.theme.size[400]} 0;
   -webkit-appearance: none;
   cursor: pointer;
 
@@ -16,7 +16,7 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &::-webkit-slider-thumb {
-    margin-top: -${props => props.theme.size[200]};
+    margin-top: -6px;
     border: none;
     height: ${props => props.theme.size[500]};
     width: ${props => props.theme.size[500]};

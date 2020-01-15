@@ -66,6 +66,7 @@ export const NavBar = styled.nav`
   grid-area: navbar;
   align-items: baseline;
   border-bottom: ${props => props.theme.size[100]} solid ${props => props.theme.grayscale[200]};
+  font-size: ${props => props.theme.size[500]};
 `
 
 export const Body = styled.div`

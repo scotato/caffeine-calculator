@@ -37,14 +37,14 @@ const Title = styled.div`
 
 const Subtitle = styled.div`
   grid-area: subtitle;
-  font-size: ${props => props.theme.grayscale[400]};
+  font-size: ${props => props.theme.size[400]};
   color: ${props => props.theme.grayscale[500]};
 `
 
 const Detail = styled.strong`
   grid-area: detail;
   justify-self: end;
-  font-size: ${props => props.theme.grayscale[400]};
+  font-size: ${props => props.theme.size[400]};
   color: ${props => props.theme.color.success};
 `
 
