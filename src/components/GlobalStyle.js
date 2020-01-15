@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
       fontWeightBase: 400,
       lineHeightBase: 1.6,
       bodyColor: theme.grayscale[900],
-      bodyBg: 'white',
+      bodyBg: theme.grayscale[100],
       headingsMarginBottom: theme.size[300],
       paragraphMarginBottom: theme.size[400],
       linkColor: theme.color.info,

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export default styled.input.attrs({type: 'range'})`
   margin-bottom: ${props => props.theme.size[700]};
   padding: ${props => props.theme.size[400]} 0;
+  background-color: transparent;
   -webkit-appearance: none;
   cursor: pointer;
 

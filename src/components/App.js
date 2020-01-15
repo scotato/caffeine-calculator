@@ -1,10 +1,10 @@
 import React from 'react'
-import { Router, Redirect } from "@reach/router"
+import { Redirect } from "@reach/router"
 import { ThemeProvider } from 'styled-components'
 import { ChartProvider } from "./ChartContext"
-import Layout from './Layout'
-import Home from './Home'
-import Drink from './Drink'
+import Layout, { NavRouter, PageRouter } from './Layout'
+import Home, { HomeNav } from './Home'
+import Drink, { DrinkNav } from './Drink'
 import Chart from './Chart'
 import theme from '../theme'
 
@@ -14,12 +14,19 @@ export default () => (
   <ThemeProvider theme={theme}>
     <ChartProvider>
       <Layout>
-        <Router>
+        <NavRouter>
+          <HomeNav path="/" />
+          <DrinkNav path="add-drink" />
+          <DrinkNav path="edit-drink/:id" />
+        </NavRouter>
+
+        <PageRouter>
           <Home path="/" />
           <Drink path="add-drink" />
           <Drink path="edit-drink/:id" />
           <NotFound default />
-        </Router>
+        </PageRouter>
+
         <Chart />
       </Layout>
     </ChartProvider>

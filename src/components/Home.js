@@ -1,26 +1,19 @@
-import React, { useEffect, useContext } from 'react'
-import { Page, Title, Body, Actions } from './Layout'
-import { ChartContext } from "./ChartContext"
+import React from 'react'
+import { Page, NavTitle, Body, Actions } from './Layout'
 import { LinkButton } from './Button'
 import Drinks from './Drinks'
 
-export default () => {
-  const [state, setState] = useContext(ChartContext)
+export const HomeNav = () => <NavTitle>Caffeine Calculator</NavTitle>
 
-  // eslint-disable-next-line
-  useEffect(() => setState({ ...state, doseAddEdit: {} }), [])
-
-  return (
-    <Page>
-      <Title>Caffeine Calculator</Title>
-      <Body>
-        <Drinks />
-      </Body>
-      <Actions>
-        <LinkButton to="add-drink" type="info">
-          Add Drink
-        </LinkButton>
-      </Actions>
-    </Page>
-  )
-}
+export default () => (
+  <Page>
+    <Body>
+      <Drinks />
+    </Body>
+    <Actions>
+      <LinkButton to="add-drink" type="info">
+        Add Drink
+      </LinkButton>
+    </Actions>
+  </Page>
+)

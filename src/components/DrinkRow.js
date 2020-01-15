@@ -23,6 +23,10 @@ const DrinkRow = styled(Link)`
   &:last-child {
     border-bottom: 0;
   }
+
+  &:hover {
+    color: inherit;
+  }
 `
 
 const Emoji = styled.div`
