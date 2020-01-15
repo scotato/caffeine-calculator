@@ -4,7 +4,7 @@ import { Link } from "@reach/router"
 
 const DrinkRow = styled(Link)`
   display: grid;
-  margin-bottom: 16px;
+  padding: 16px 0;
   align-items: center;
   grid-column-gap: 8px;
   grid-row-gap: 4px;
@@ -16,6 +16,12 @@ const DrinkRow = styled(Link)`
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
+  border-bottom: 2px solid ${props => props.theme.colors.defaultUltraLight};
+
+  &:last-child {
+    border-bottom: 0;
+  }
 `
 
 const Icon = styled.div`

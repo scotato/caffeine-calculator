@@ -1,6 +1,7 @@
 const colors = {
   default: '#9ba6b0',
   defaultLight: '#d4d9dd',
+  defaultUltraLight: '#e8ebed',
   info: '#007bff',
   infoAlpha: 'hsla(211, 100%, 50%, 0.5)',
   success: '#1bc546',

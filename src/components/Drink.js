@@ -137,8 +137,8 @@ export default props => {
       
       <Actions>
         <Link to="/">Cancel</Link>
-        {props.id && <Button onClick={removeDrink} type="danger">Delete</Button>}
         <Button onClick={saveDrink} type='success'>{submitText}</Button>
+        {props.id && <Button onClick={removeDrink} type="danger">Delete</Button>}
       </Actions>
     </Page>
   ) : null
