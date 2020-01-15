@@ -13,7 +13,7 @@ export default () => {
     ? [...drinks.filter(dose => doseAddEdit.id !== dose.id), doseAddEdit]
     : drinks
   
-  defaults.global.defaultFontColor = theme.colors.default
+  defaults.global.defaultFontColor = theme.grayscale[500]
   defaults.global.defaultFontFamily = theme.fontFamily
   defaults.global.defaultFontSize = 16
 
@@ -22,7 +22,7 @@ export default () => {
     datasets: [{
       label: 'Caffeine',
       data: getDatasets(drinkData),
-      backgroundColor: theme.colors.infoAlpha
+      backgroundColor: theme.color.infoAlpha
     }]
   }
 

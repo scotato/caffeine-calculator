@@ -2,8 +2,8 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-size: 18px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: ${props => props.theme.size[600]};
+    font-family: ${props => props.theme.fontFamily};
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -11,15 +11,27 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: 40px;
+    font-size: ${props => props.theme.size[800]};
   }
 
   h2 {
-    font-size: 32px;
+    font-size: ${props => props.theme.size[700]};
   }
 
   h3 {
-    font-size: 24px;
+    font-size: ${props => props.theme.size[600]};
+  }
+
+  h4 {
+    font-size: ${props => props.theme.size[500]};
+  }
+
+  h5 {
+    font-size: ${props => props.theme.size[400]};
+  }
+
+  h6 {
+    font-size: ${props => props.theme.size[300]};
   }
 
   strong {

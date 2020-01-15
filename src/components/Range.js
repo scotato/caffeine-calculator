@@ -1,36 +1,36 @@
 import styled from 'styled-components'
 
 export default styled.input.attrs({type: 'range'})`
-  margin-bottom: 32px;
-  padding: 8px 0;
+  margin-bottom: ${props => props.theme.size[700]};
+  padding: ${props => props.theme.size[300]} 0;
   -webkit-appearance: none;
   cursor: pointer;
 
   &::-webkit-slider-runnable-track {
-    height: 5px;
-    background: ${props => props.theme.colors.defaultLight};
+    height: ${props => props.theme.size[200]};
+    background: ${props => props.theme.grayscale[300]};
     border: none;
-    border-radius: 3px;
+    border-radius: ${props => props.theme.size[100]};
     will-change: background;
     transition: background 0.3s ease-out;
   }
 
   &::-webkit-slider-thumb {
-    margin-top: -5px;
+    margin-top: -${props => props.theme.size[200]};
     border: none;
-    height: 16px;
-    width: 16px;
+    height: ${props => props.theme.size[500]};
+    width: ${props => props.theme.size[500]};
     border-radius: 50%;
-    background: ${props => props.theme.colors.defaultLight};
+    background: ${props => props.theme.grayscale[300]};
     will-change: background;
     transition: background 0.3s ease-out;
     -webkit-appearance: none;
 
-    @media (max-width: 768px) { 
-      margin-top: -9px;
-      height: 24px;
-      width: 24px;
-    }
+    ${props => props.theme.media.tabletVertical`
+      margin-top: -${props => props.theme.size[300]};
+      height: ${props => props.theme.size[700]};
+      width: ${props => props.theme.size[700]};
+    `}
   }
 
   &:focus {
@@ -38,26 +38,26 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &:focus::-webkit-slider-runnable-track {
-    background: ${props => props.theme.colors.info};
+    background: ${props => props.theme.color.info};
   }
 
   &:focus::-webkit-slider-thumb {
-    background: ${props => props.theme.colors.info};
+    background: ${props => props.theme.color.info};
   }
 
   &::-moz-range-track {
-    height: 5px;
-    background: ${props => props.theme.colors.defaultLight};
+    height: ${props => props.theme.size[200]};
+    background: ${props => props.theme.grayscale[300]};
     border: none;
-    border-radius: 3px;
+    border-radius: ${props => props.theme.size[200]};
     will-change: background;
     transition: background 0.3s ease-out;
   }
 
   &::-moz-range-thumb {
     border: none;
-    height: 16px;
-    width: 16px;
+    height: ${props => props.theme.size[500]};
+    width: ${props => props.theme.size[500]};
     border-radius: 50%;
     background: goldenrod;
     will-change: background;
@@ -66,19 +66,19 @@ export default styled.input.attrs({type: 'range'})`
 
   /*hide the outline behind the border*/
   &:-moz-focusring{
-    outline: 1px solid white;
-    outline-offset: -1px;
+    outline: ${props => props.theme.size[100]} solid white;
+    outline-offset: -${props => props.theme.size[100]};
   }
 
   &::-ms-track {
-    height: 5px;
+    height: ${props => props.theme.size[200]};
     
     /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
     background: transparent;
     
     /*leave room for the larger thumb to overflow with a transparent border */
     border-color: transparent;
-    border-width: 6px 0;
+    border-width: ${props => props.theme.size[200]} 0;
 
     /*remove default tick marks*/
     color: transparent;
@@ -87,23 +87,23 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &::-ms-fill-lower {
-    background: #777;
-    border-radius: 10px;
+    background: ${props => props.theme.grayscale[700]};
+    border-radius: ${props => props.theme.size[400]};
     will-change: background;
     transition: background 0.3s ease-out;
   }
 
   &::-ms-fill-upper {
-    background: ${props => props.theme.colors.defaultLight};
-    border-radius: 10px;
+    background: ${props => props.theme.grayscale[300]};
+    border-radius: ${props => props.theme.size[400]};
     will-change: background;
     transition: background 0.3s ease-out;
   }
 
   &::-ms-thumb {
     border: none;
-    height: 16px;
-    width: 16px;
+    height: ${props => props.theme.size[500]};
+    width: ${props => props.theme.size[500]};
     border-radius: 50%;
     background: goldenrod;
     will-change: background;
@@ -111,10 +111,10 @@ export default styled.input.attrs({type: 'range'})`
   }
 
   &:focus::-ms-fill-lower {
-    background: ${props => props.theme.colors.info};
+    background: ${props => props.theme.color.info};
   }
 
   &:focus::-ms-fill-upper {
-    background: ${props => props.theme.colors.info};
+    background: ${props => props.theme.color.info};
   }
 `

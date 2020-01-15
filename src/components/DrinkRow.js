@@ -5,20 +5,20 @@ import Icon from "./Icon"
 
 const DrinkRow = styled(Link)`
   display: grid;
-  padding: 16px 0;
+  padding: ${props => props.theme.size[500]} 0;
   align-items: center;
-  grid-column-gap: 12px;
-  grid-row-gap: 4px;
-  grid-template-columns: 32px auto auto 24px;
-  grid-template-rows: 16px 12px;
+  grid-column-gap: ${props => props.theme.size[400]};
+  grid-row-gap: ${props => props.theme.size[200]};
+  grid-template-columns: ${props => props.theme.size[700]} auto auto ${props => props.theme.size[600]};
+  grid-template-rows: ${props => props.theme.size[500]} ${props => props.theme.size[400]};
   grid-template-areas: 
     "emoji title detail icon"
     "emoji subtitle detail icon";
   color: inherit;
   text-decoration: none;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  border-bottom: 2px solid ${props => props.theme.colors.defaultUltraLight};
+  border-top: ${props => props.theme.size[100]} solid transparent;
+  border-bottom: ${props => props.theme.size[100]} solid ${props => props.theme.grayscale[200]};
 
   &:last-child {
     border-bottom: 0;
@@ -27,31 +27,31 @@ const DrinkRow = styled(Link)`
 
 const Emoji = styled.div`
   grid-area: emoji;
-  font-size: 32px;
+  font-size: ${props => props.theme.size[700]};
 `
 
 const Title = styled.div`
   grid-area: title;
-  font-size: 16px;
+  font-size: ${props => props.theme.size[500]};
 `
 
 const Subtitle = styled.div`
   grid-area: subtitle;
-  font-size: 12px;
-  color: ${props => props.theme.colors.default};
+  font-size: ${props => props.theme.grayscale[400]};
+  color: ${props => props.theme.grayscale[500]};
 `
 
 const Detail = styled.strong`
   grid-area: detail;
   justify-self: end;
-  font-size: 12px;
-  color: ${props => props.theme.colors.success};
+  font-size: ${props => props.theme.grayscale[400]};
+  color: ${props => props.theme.color.success};
 `
 
 const IconRight = styled.div`
   display: grid;
   grid-area: icon;
-  color: ${props => props.theme.colors.defaultLight};
+  color: ${props => props.theme.grayscale[300]};
   place-items: center;
 `
 

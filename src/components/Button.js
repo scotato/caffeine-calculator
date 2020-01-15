@@ -3,11 +3,11 @@ import styled, { css } from 'styled-components'
 import { Link as LinkRouter } from "@reach/router"
 import Icon from './Icon'
 
-const backgroundColor = ({ type = 'default', theme }) => theme.colors[type]
-const color = ({ type = 'info', theme }) => theme.colors[type]
+const backgroundColor = ({ type = 'default', theme }) => theme.color[type]
+const color = ({ type = 'info', theme }) => theme.color[type]
 
 const button = css`
-  padding: 16px 24px;
+  padding: ${props => props.theme.size[500]} ${props => props.theme.size[600]};
   color: white;
   font-size: inherit;
   font-weight: 500;
@@ -15,7 +15,7 @@ const button = css`
   text-decoration: none;
   cursor: pointer;
   background-color: ${backgroundColor};
-  border-radius: 64px;
+  border-radius: ${props => props.theme.size[900]};
   border: 0;
 `
 
