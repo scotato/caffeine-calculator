@@ -25,7 +25,6 @@ export default props => {
     if (shouldRedirect) {
       navigate("/")
     } else {
-      dispatch({type: 'setDose', payload: dose})
       dispatch({type: 'setIsAddEdit', payload: true})
     }
 

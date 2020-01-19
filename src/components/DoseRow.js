@@ -60,7 +60,7 @@ const DoseEmoji = styled(Emoji)`
 `
 
 export default props => (
-  <DoseRow to={props.to}>
+  <DoseRow to={props.to} onClick={props.onClick}>
     <DoseEmoji name={props.emoji} size={700} />
     <Title>{props.title}</Title>
     <Subtitle>{props.subtitle}</Subtitle>

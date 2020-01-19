@@ -7,7 +7,7 @@ import Doses from './Doses'
 export const HomeNav = () => <NavTitle>Caffeine Calculator</NavTitle>
 
 export default () => {
-  const { state } = useContext(Context)
+  const { state, dispatch } = useContext(Context)
 
   return (
     <Page>
@@ -23,7 +23,7 @@ export default () => {
         )}
       </Body>
       <Actions>
-        <LinkButton to="add-dose" type="info">
+        <LinkButton type="info" to="add-dose" onClick={() => dispatch({type: 'setDose'})}>
           Add Dose
         </LinkButton>
       </Actions>
