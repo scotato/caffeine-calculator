@@ -58,7 +58,7 @@ const BackLink = styled(Link)`
 `
 
 export const BackButton = () =>
-  <BackLink to="../">
+  <BackLink to="../" replace>
     <Icon name="chevron-left" size={400} /> Back
   </BackLink>
 
