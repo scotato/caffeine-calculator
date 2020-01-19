@@ -9,8 +9,9 @@ import { Page, Body, Actions } from './Layout'
 import Button, { TextButton, BackButton } from './Button'
 import NavBar from './NavBar'
 import Label from './Label'
-import Select from './Select'
+import Select, { LabelEmoji } from './Select'
 import Slider from './Slider'
+import Emoji from './Emoji'
 
 export default props => {
   const { state, dispatch } = useContext(Context)
@@ -45,13 +46,27 @@ export default props => {
         <Select
           name="beverage"
           isSearchable={false}
-          value={{value: drink.title, label: `${drink.icon} ${drink.title}`}}
+          value={{
+            value: drink.title, 
+            label: (
+              <LabelEmoji>
+                <Emoji name={drink.emoji} />
+                <span>{drink.title}</span>
+              </LabelEmoji>
+            )
+          }}
           onChange={option => {
             const drinkNew = beverages.find(beverage => beverage.title === option.value)
             dispatch({type: 'setDrink', payload: drinkNew})
           }}
-          options={beverages.map(beverage => (
-            {value: beverage.title, label: `${beverage.icon} ${beverage.title}`}
+          options={beverages.map(beverage => ({
+            value: beverage.title, 
+            label: (
+              <LabelEmoji>
+                <Emoji name={beverage.emoji} />
+                <span>{beverage.title}</span>
+              </LabelEmoji>
+            )}
           ))}
         />
 

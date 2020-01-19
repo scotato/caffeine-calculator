@@ -9,7 +9,7 @@ export default () => {
   return state.doses.sort((a, b) => a.hour - b.hour).map(dose => (
     <DoseRow
       key={dose.id}
-      icon={dose.drink.icon}
+      emoji={dose.drink.emoji}
       title={dose.drink.title}
       subtitle={`${dose.quantity}oz at ${getTimestamp(dose.hour)}`}
       detail={`+${dose.drink.caffeine / dose.drink.oz * dose.quantity}mg`}

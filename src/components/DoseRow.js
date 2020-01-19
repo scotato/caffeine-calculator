@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from "@reach/router"
+import Emoji from "./Emoji"
 import Icon from "./Icon"
 
 const DoseRow = styled(Link)`
@@ -29,11 +30,6 @@ const DoseRow = styled(Link)`
   }
 `
 
-const Emoji = styled.div`
-  grid-area: emoji;
-  font-size: ${props => props.theme.size[700]};
-`
-
 const Title = styled.div`
   grid-area: title;
   font-size: ${props => props.theme.size[500]};
@@ -59,9 +55,13 @@ const IconRight = styled.div`
   place-items: center;
 `
 
+const DoseEmoji = styled(Emoji)`
+  grid-area: emoji;
+`
+
 export default props => (
   <DoseRow to={props.to}>
-    <Emoji>{props.icon}</Emoji>
+    <DoseEmoji name={props.emoji} size={700} />
     <Title>{props.title}</Title>
     <Subtitle>{props.subtitle}</Subtitle>
     <Detail>{props.detail}</Detail>

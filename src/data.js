@@ -24,7 +24,7 @@
 export const beverages = [
   {
     title: "Coffee",
-    icon: "☕️",
+    emoji: "coffee",
     caffeine: 130,
     oz: 8,
     min: 8,
@@ -34,7 +34,7 @@ export const beverages = [
   {
     title: "Espresso",
     caffeine: 60,
-    icon: "☕️",
+    emoji: "coffee",
     oz: 1,
     min: 1,
     max: 4,
@@ -43,7 +43,7 @@ export const beverages = [
   {
     title: "Latte",
     caffeine: 100,
-    icon: "☕️",
+    emoji: "coffee",
     oz: 8,
     min: 8,
     max: 20,
@@ -51,7 +51,7 @@ export const beverages = [
   },
   {
     title: "Black Tea",
-    icon: "🍵",
+    emoji: "tea",
     caffeine: 40,
     oz: 8,
     min: 8,
@@ -60,7 +60,7 @@ export const beverages = [
   },
   {
     title: "Green Tea",
-    icon: "🍵",
+    emoji: "tea",
     caffeine: 30,
     oz: 8,
     min: 8,
@@ -69,7 +69,7 @@ export const beverages = [
   },
   {
     title: "Soda",
-    icon: "🥤",
+    emoji: "soda",
     caffeine: 35,
     oz: 8,
     min: 8,
@@ -78,7 +78,7 @@ export const beverages = [
   },
   {
     title: "Energy Drink",
-    icon: "⚡️",
+    emoji: "lightning-bolt",
     caffeine: 100,
     oz: 8,
     min: 8,
@@ -87,7 +87,7 @@ export const beverages = [
   },
   {
     title: "Energy Shot",
-    icon: "⚡️",
+    emoji: "lightning-bolt",
     caffeine: 70,
     oz: 1,
     min: 1,
