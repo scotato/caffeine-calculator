@@ -46,10 +46,21 @@ export const LinkButton = styled(LinkRouter)`
   ${button}
 `
 
+const BackLink = styled(Link)`
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: ${props => props.theme.size[300]};
+  align-items: baseline;
+
+  svg {
+    transform: scale(1.25);
+  }
+`
+
 export const BackButton = () =>
-  <Link to="../">
-    <Icon name="chevron-left" fixedWidth />Back
-  </Link>
+  <BackLink to="../">
+    <Icon name="chevron-left" size={400} /> Back
+  </BackLink>
 
 export default styled.button`
   ${button}

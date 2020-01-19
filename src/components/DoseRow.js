@@ -66,7 +66,7 @@ export default props => (
     <Subtitle>{props.subtitle}</Subtitle>
     <Detail>{props.detail}</Detail>
     <IconRight>
-      <Icon name="chevron-right" />
+      <Icon name="chevron-right" size={600} />
     </IconRight>
   </DoseRow>
 )
