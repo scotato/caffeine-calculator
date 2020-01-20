@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { ReactComponent as ChevronLeft } from '../icons/chevron-left.svg'
 import { ReactComponent as ChevronRight } from '../icons/chevron-right.svg'
+import { ReactComponent as Github } from '../icons/github.svg'
+import { ReactComponent as Twitter } from '../icons/twitter.svg'
+import { ReactComponent as Wikipedia } from '../icons/wikipedia.svg'
 
 const IconSwitch = props => {
   switch (props.name) {
@@ -9,6 +12,12 @@ const IconSwitch = props => {
       return <ChevronLeft />
     case "chevron-right":
         return <ChevronRight />
+    case "github":
+      return <Github />
+    case "twitter":
+        return <Twitter />
+    case "wikipedia":
+      return <Wikipedia />
     default:
       return null
   }

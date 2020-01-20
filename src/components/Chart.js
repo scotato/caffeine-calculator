@@ -4,6 +4,7 @@ import { Context } from "./Context"
 import { Chart  } from './Layout'
 import { getDatasets, getHourLabels } from '../helpers'
 import { Line, defaults } from 'react-chartjs-2'
+import Social from './Social'
 
 export default () => {
   const theme = useContext(ThemeContext)
@@ -49,7 +50,10 @@ export default () => {
 
   return (
     <Chart>
-      <Line data={data} options={options} />
+      <Social />
+      <div>
+        <Line data={data} options={options} />
+      </div>
     </Chart>
   )  
 }

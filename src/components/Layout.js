@@ -107,7 +107,9 @@ export const Actions = styled.div`
 `
 
 export const Chart = styled.section`
+  display: grid;
   padding: ${props => props.theme.size[700]};
+  grid-template-rows: auto 1fr;
   grid-area: chart;
   max-width: 100vw;
   background-color: ${props => props.theme.grayscale[100]};
