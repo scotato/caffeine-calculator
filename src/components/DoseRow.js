@@ -6,7 +6,7 @@ import Icon from "./Icon"
 
 const DoseRow = styled(Link)`
   display: grid;
-  padding: ${props => props.theme.size[500]} 0;
+  padding: ${props => props.theme.size[500]};
   align-items: center;
   grid-column-gap: ${props => props.theme.size[400]};
   grid-row-gap: ${props => props.theme.size[200]};
@@ -51,7 +51,7 @@ const Detail = styled.strong`
 const IconRight = styled.div`
   display: grid;
   grid-area: icon;
-  color: ${props => props.theme.grayscale[300]};
+  color: ${props => props.theme.grayscale[400]};
   place-items: center;
 `
 

@@ -106,7 +106,8 @@ export default props => {
             dispatch({type: 'saveDose'})
             navigate("/")
           }}
-          type='success'
+          type="success"
+          size="lg"
         >{submitText}</Button>
       </Actions>
     </Page>

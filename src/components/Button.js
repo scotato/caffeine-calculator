@@ -4,12 +4,46 @@ import { Link as LinkRouter } from "@reach/router"
 import Icon from './Icon'
 
 const backgroundColor = ({ type = 'default', theme }) => theme.color[type]
-const color = ({ type = 'info', theme }) => theme.color[type]
+const textColor = ({ type = 'info', theme }) => theme.color[type]
+const color = ({ type = 'default', theme }) => {
+  switch(type) {
+    case "default":
+      return theme.grayscale[600]
+    default:
+      return 'white'
+  }
+}
+
+const padding = ({ size = 'md', theme }) => {
+  switch(size) {
+    case "sm":
+      return `0 ${theme.size[400]}`
+    case "md":
+        return `${theme.size[400]} ${theme.size[500]}`
+    case "lg":
+        return `${theme.size[500]} ${theme.size[600]}`
+    default:
+      return 0
+  }
+}
+
+const fontSize = ({ size = 'md', theme }) => {
+  switch(size) {
+    case "sm":
+      return theme.size[400]
+    case "md":
+        return theme.size[500]
+    case "lg":
+        return theme.size[600]
+    default:
+      return "inherit"
+  }
+}
 
 const button = css`
-  padding: ${props => props.theme.size[500]} ${props => props.theme.size[600]};
-  color: white;
-  font-size: inherit;
+  padding: ${padding};
+  color: ${color};
+  font-size: ${fontSize};
   font-weight: 500;
   text-align: center;
   text-decoration: none;
@@ -20,7 +54,7 @@ const button = css`
   border: 0;
 
   &:hover, &:active, &:focus {
-    color: white;
+    color: ${color};
   }
 `
 
@@ -30,7 +64,7 @@ const text = css`
   text-decoration: none;
   font-weight: 500;
   font-size: inherit;
-  color: ${color};
+  color: ${textColor};
   cursor: pointer;
 `
 

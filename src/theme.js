@@ -1,16 +1,8 @@
 import { css } from 'styled-components'
 
-const color = {
-  info: '#007bff',
-  infoAlpha: 'hsla(211, 100%, 50%, 0.5)',
-  success: '#1bc546',
-  warning: '#ffc107',
-  danger: '#dc3545',
-}
-
 const grayscale = {
-  100: 'hsl(200, 10%, 95% )', 
-  200: 'hsl(200, 10%, 92% )', 
+  100: 'hsl(200, 10%, 97.5% )', 
+  200: 'hsl(200, 10%, 95% )', 
   300: 'hsl(200, 10%, 90% )', 
   400: 'hsl(200, 10%, 80% )', 
   500: 'hsl(200, 10%, 50% )', 
@@ -18,6 +10,17 @@ const grayscale = {
   700: 'hsl(200, 10%, 30% )', 
   800: 'hsl(200, 10%, 15% )',
   900: 'hsl(200, 10%, 2.5% )' 
+}
+
+const color = {
+  info: '#007bff',
+  infoAlpha: 'hsla(211, 100%, 50%, 0.5)',
+  success: '#1bc546',
+  warning: '#ffc107',
+  danger: '#dc3545',
+  default: grayscale[400],
+  light: grayscale[100],
+  dark: grayscale[900],
 }
 
 const size = {

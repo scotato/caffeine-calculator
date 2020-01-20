@@ -47,6 +47,11 @@ function reducer(state, action) {
         ...state,
         doses: state.doses.filter(dose => action.payload !== dose.id.toString())
       }
+    case 'clearDoses':
+        return {
+          ...state,
+          doses: []
+        }
     case 'setIsAddEdit':
         return {
           ...state, 
